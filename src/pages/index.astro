@@ -12,19 +12,25 @@ import Gallery from "@components/Gallery/Gallery.astro";
 import Testimonials from "@components/Testimonials/Testimonials.astro";
 import FAQ from "@components/FAQ/FAQ.astro";
 import CTASimple from "@components/CTA/CTASimple.astro";
+import HomeHero from "@components/Hero/HomeHero.astro";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Banner (for rendering)
-import heroImage from "@assets/images/hero/hero.jpg";
+import heroImage from "@assets/images/OG.jpg";
 const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
 ---
 
-<BaseLayout title="Pixel Perfect Websites" description="Meta description for the page" heroImage={optimizedHeroImage}>
-	<Hero image={optimizedHeroImage} />
-	<Services />
-	<SideBySide />
-	<SideBySideReverse />
-	<Gallery />
-	<Testimonials />
-	<FAQ />
-	<CTASimple />
+<BaseLayout
+  title="Pixel Perfect Websites"
+  description="Meta description for the page"
+  heroImage={optimizedHeroImage}
+>
+  <!-- <Hero image={optimizedHeroImage} /> -->
+  <HomeHero image={optimizedHeroImage} />
+  <!-- <Services /> -->
+  <SideBySide />
+  <SideBySideReverse />
+  <Gallery />
+  <Testimonials />
+  <FAQ />
+  <CTASimple />
 </BaseLayout>

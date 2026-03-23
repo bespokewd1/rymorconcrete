@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+import { type HTMLAttributes } from "astro/types";
+import cn from "src/utils/cn";
+
+type Props = HTMLAttributes<"a">;
+
+const { class: className, href: to = "/contact", ...props } = Astro.props;
+---
+
+<a
+  href={to}
+  class:list={cn([
+    "inline-flex items-center justify-center gap-2 rounded-md border border-slate-800",
+    "mr-2 h-12.5 px-6 font-medium text-white transition-colors",
+    "hover:animate-shimmer focus-visible:animate-shimmer",
+    "bg-[linear-gradient(110deg,var(--primary),45%,var(--primaryLight),55%,var(--primary))]",
+    "focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 focus:outline-none",
+    "bg-size-[250%_250%] uppercase",
+    className,
+  ])}
+>
+  <slot>
+    <Icon name="tabler:phone-call" size={17} />
+    Get a Free Quote
+  </slot>
+</a>

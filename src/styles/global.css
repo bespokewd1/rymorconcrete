@@ -1,0 +1,15 @@
+@import "tailwindcss" important;
+
+@theme {
+  --animate-shimmer: shimmer 1s linear 1;
+  --color-primary: var(--primary);
+  --color-primaryLight: var(--primaryLight);
+}
+@keyframes shimmer {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}

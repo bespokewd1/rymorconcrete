@@ -14,12 +14,20 @@
 	},
 	"dependencies": {
 		"@astrojs/sitemap": "^3.7.0",
+		"@tailwindcss/vite": "^4.2.2",
 		"astro": "^5.18.0",
 		"astro-icon": "^1.1.5",
 		"autoprefixer": "^10.4.27",
-		"less": "^4.5.1"
+		"clsx": "^2.1.1",
+		"less": "^4.5.1",
+		"tailwind-merge": "^3.5.0",
+		"tailwindcss": "^4.2.2"
 	},
 	"devDependencies": {
-		"netlify-plugin-cache": "^1.0.3"
+		"@iconify-json/tabler": "^1.2.32",
+		"netlify-plugin-cache": "^1.0.3",
+		"prettier": "3.8.1",
+		"prettier-plugin-astro": "0.14.1",
+		"prettier-plugin-tailwindcss": "0.7.2"
 	}
 }

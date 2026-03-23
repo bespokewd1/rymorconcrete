@@ -1,0 +1,653 @@
+---
+import { Icon } from "astro-icon/components";
+import { BUSINESS } from "@data/client";
+import type { GetImageResult } from "astro";
+import { Picture } from "astro:assets";
+import CTALink from "@components/CTA/CTALink.astro";
+
+interface Props {
+  image: GetImageResult; // pre-optimized image from getImage()
+}
+
+const { image } = Astro.props as Props;
+---
+
+<section
+  id="hero-227"
+  class:list={["relative before:absolute before:inset-0 before:bg-black/45"]}
+  style={`--hero-bg: url("${image.src}")`}
+>
+  <div class="cs-container">
+    <div class="cs-flex-group">
+      <!-- <span class="cs-topper">KMS Plumbing & Gasfitting Ltd.</span> -->
+      <h1 class="cs-title">Edmonton’s Trusted Concrete Experts</h1>
+      <p class="cs-text">
+        Durable, high-quality concrete work for homes and businesses — from
+        patios and driveways to parking lots and custom finishes.
+      </p>
+
+      <!-- <a href="/contact" class="cs-button-solid">
+        <Icon name="tabler:phone-call" size={17} />
+        Get a Free Quote
+      </a> -->
+      <!-- bg-size-[200%_100%] -->
+      <!-- "bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)]", -->
+      <CTALink class:list={"mb-2"}>
+        <Icon name="tabler:phone-call" size={17} />
+        Get a Free Quote
+      </CTALink>
+      <CTALink href={`sms:${BUSINESS.phoneForTel}`}>
+        <Icon name="tabler:device-mobile" size={20} />
+        <span class="inline-flex flex-col items-center justify-center">
+          <span class="leading-[1em]">Call Now:</span>
+          <span class="leading-[1em]">780-263-2483</span>
+        </span>
+      </CTALink>
+
+      <!-- <a
+        href={`sms:${BUSINESS.phoneForTel}`}
+        class="cs-button-solid inline-flex items-center"
+      >
+        <Icon name="tabler:device-mobile" size={20} />
+        <span class="inline-flex flex-col items-center justify-center">
+          <span class="leading-[1em]">Call Now:</span>
+          <span class="leading-[1em]">780-263-2483</span>
+        </span>
+      </a> -->
+    </div>
+
+    <!-- Background Image -->
+    <!-- <picture class="cs-picture">
+    <source
+      media="(max-width: 600px)"
+      srcset="/assets/images/plumber-header.jpg"
+    />
+    <source
+      media="(min-width: 601px)"
+      srcset="/assets/images/plumber-header.jpg"
+    />
+    <img
+      decoding="async"
+      src="/assets/images/plumber-header.jpg"
+      alt="Plumber"
+      width="2250"
+      height="1500"
+      aria-hidden="true"
+    />
+  </picture> -->
+  </div>
+
+  <Picture
+    src={image.src}
+    alt="new home"
+    width={image.attributes.width}
+    height={image.attributes.height}
+    formats={["avif", "webp"]}
+    priority
+    pictureAttributes={{ class: "cs-picture before:hidden" }}
+  />
+</section>
+
+<style lang="less">
+  /*-- -------------------------- -->
+<---           Hero             -->
+<--- -------------------------- -*/
+
+  /* Mobile - 360px */
+  @media only screen and (min-width: 0rem) {
+    #hero-227 {
+      /* Centers button */
+      text-align: center;
+      /* changes on tablet */
+      padding: 0 (16/16rem);
+      position: relative;
+      z-index: 1;
+      /* prevents overflow from the lines extending past the screen width */
+      overflow: hidden;
+
+      .cs-picture {
+        /* Background Image */
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -2;
+
+        &:before {
+          /* Black Color Overlay */
+          content: "";
+          width: 100%;
+          height: 100%;
+          background: #000;
+          opacity: 0.6;
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          /* prevents the cursor from interacting with it */
+          pointer-events: none;
+        }
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          /* Makes image act like a background-image */
+          object-fit: cover;
+        }
+      }
+
+      .cs-container {
+        width: 100%;
+        max-width: (1280/16rem);
+        /* we put the padding top and bottom on the container instead of #Hero so the pseudo element lines go to the top and bottom of the section */
+        /* 144px - 300px - leaving extra space for the navigation */
+        /* changes on tablet */
+        padding: clamp(9rem, 25.95vw, 12rem) 0 0;
+        /* 60px - 200px */
+        padding-bottom: clamp(3.75rem, 12.5vw, 25rem);
+        margin: auto;
+        margin-top: var(--canadaBannerHeight);
+        position: relative;
+
+        &:before {
+          /* Left Line */
+          content: "";
+          width: 1px;
+          height: 100%;
+          background: -moz-linear-gradient(
+            top,
+            rgba(250, 251, 252, 0.5) 0%,
+            rgba(250, 251, 252, 0) 100%
+          ); /* FF3.6-15 */
+          background: -webkit-linear-gradient(
+            top,
+            rgba(250, 251, 252, 0.5) 0%,
+            rgba(250, 251, 252, 0) 100%
+          ); /* Chrome10-25,Safari5.1-6 */
+          opacity: 1;
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      .cs-flex-group {
+        /* 60px - 220px */
+        margin-bottom: clamp(3.75rem, 15.5vw, 13.75rem);
+        /* changes on tablet */
+        margin-left: (16/16rem);
+        width: 80vw;
+        /* 464px - 562px */
+        max-width: clamp(29rem, 60vw, 35.125rem);
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+      }
+
+      .cs-topper {
+        /* 13px - 16px */
+        font-size: clamp(0.8125rem, 1.6vw, 1rem);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.2em;
+        text-transform: uppercase;
+        text-align: left;
+        letter-spacing: 0.1rem;
+        font-weight: 700;
+        color: var(--primaryLight);
+        margin-bottom: (16/16rem);
+        display: block;
+      }
+
+      .cs-title {
+        /* 39px - 61px */
+        font-size: clamp(2.4375rem, 6.4vw, 3.8125rem);
+        -webkit-font-smoothing: antialiased;
+        font-weight: 900;
+        line-height: 1.2em;
+        text-align: left;
+        width: 100%;
+        /* 32px - 40px */
+        margin: 0 auto clamp(2rem, 4vw, 2.5rem) 0;
+        color: var(--bodyTextColorWhite);
+        position: relative;
+      }
+
+      .cs-text {
+        /* 16px - 20px */
+        font-size: clamp(1rem, 1.95vw, 1.25rem);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5em;
+        text-align: left;
+        width: 100%;
+        /* 32px - 40px */
+        margin: 0 auto clamp(2rem, 4vw, 2.5rem) 0;
+        /* 40px - 48px */
+        margin-bottom: clamp(2.5rem, 4vw, 3rem);
+        color: var(--bodyTextColorWhite);
+      }
+
+      .cs-button-solid {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: (16/16rem);
+        -webkit-font-smoothing: antialiased;
+        /* 46px - 56px */
+        line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+        width: (180/16rem);
+        text-decoration: none;
+        font-weight: 700;
+        margin: 0 (20/16rem) (16/16rem) 0;
+        color: #fff;
+        padding: 0;
+        background-color: var(--secondary);
+        position: relative;
+        z-index: 1;
+
+        &:before {
+          content: "";
+          position: absolute;
+          display: block;
+          height: 100%;
+          width: 0%;
+          background: #000;
+          opacity: 1;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          transition: width 0.3s;
+        }
+
+        &:hover {
+          &:before {
+            width: 100%;
+          }
+        }
+
+        .cs-img {
+          margin-bottom: (4/16rem);
+        }
+      }
+
+      .cs-button-transparent {
+        font-size: (16/16rem);
+        -webkit-font-smoothing: antialiased;
+        /* 46px - 56px */
+        line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+        width: (180/16rem);
+        /* 46px - 56px */
+        height: clamp(2.875rem, 5.5vw, 3.5rem);
+        text-decoration: none;
+        font-weight: 700;
+        margin: 0 1.25rem 0 0;
+        color: #fff;
+        padding: 0;
+        background-color: transparent !important; /* to bypass acuity styling*/
+        border: 1px solid var(--bodyTextColorWhite);
+        border-radius: 70px;
+        box-sizing: border-box;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        z-index: 1;
+
+        &:not(:last-child) {
+          margin-bottom: (16/16rem);
+        }
+
+        &:before {
+          content: "";
+          position: absolute;
+          display: block;
+          background: #000;
+          opacity: 1;
+          /* so it sits on top of the border */
+          border-radius: 70px;
+          top: -1px;
+          left: -1px;
+          right: -1px;
+          bottom: -1px;
+          z-index: -1;
+          transform-origin: left;
+          /* this is what creates the grow affect on hover */
+          transform: scaleX(0);
+          transition: transform 0.3s;
+        }
+
+        &:hover {
+          border-color: #000;
+          transition-delay: 250ms;
+          &:before {
+            transform: scaleX(1);
+          }
+        }
+
+        .cs-img {
+          display: block;
+          margin: 0;
+          margin-bottom: (4/16rem);
+        }
+      }
+
+      .cs-card-group {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .cs-item {
+        list-style: none;
+        position: relative;
+        box-sizing: border-box;
+
+        &:before {
+          /* Top Line */
+          content: "";
+          width: 100vw;
+          height: 1px;
+          background: -moz-linear-gradient(
+            left,
+            rgba(250, 251, 252, 0.5) 0%,
+            rgba(250, 251, 252, 0) 100%
+          ); /* FF3.6-15 */
+          background: -webkit-linear-gradient(
+            left,
+            rgba(250, 251, 252, 0.5) 0%,
+            rgba(250, 251, 252, 0) 100%
+          ); /* Chrome10-25,Safari5.1-6 */
+          opacity: 1;
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        &:last-of-type {
+          &:after {
+            /* Bottom line on last card */
+            content: "";
+            width: 100vw;
+            height: 1px;
+            background: -moz-linear-gradient(
+              left,
+              rgba(250, 251, 252, 0.5) 0%,
+              rgba(250, 251, 252, 0) 100%
+            ); /* FF3.6-15 */
+            background: -webkit-linear-gradient(
+              left,
+              rgba(250, 251, 252, 0.5) 0%,
+              rgba(250, 251, 252, 0) 100%
+            ); /* Chrome10-25,Safari5.1-6 */
+            opacity: 1;
+            position: absolute;
+            display: block;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+
+      .cs-link {
+        text-align: left;
+        text-decoration: none;
+        /* changes on tablet */
+        padding: (28/16rem) (16/16rem);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        position: relative;
+
+        &:hover {
+          &:before {
+            opacity: 0.4;
+          }
+        }
+
+        &:before {
+          /* Hover Box */
+          content: "";
+          width: 100%;
+          height: 100%;
+          background: var(--primary);
+          opacity: 0;
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          transition: opacity 0.3s;
+        }
+      }
+
+      .cs-number {
+        /* 20px - 25px */
+        font-size: clamp(1.25rem, 2vw, 1.5625rem);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.2em;
+        font-weight: 900;
+        /* 24px - 32px */
+        margin-bottom: clamp(1.5rem, 4vw, 2rem);
+        color: var(--primaryLight);
+        display: block;
+      }
+
+      .cs-h2 {
+        /* 16px - 20px */
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        -webkit-font-smoothing: antialiased;
+        font-weight: 900;
+        line-height: 1.2em;
+        padding: 0;
+        margin: 0;
+        margin-bottom: (16/16rem);
+        color: var(--bodyTextColorWhite);
+        position: relative;
+        z-index: 10000;
+      }
+
+      .cs-item-text {
+        /* 14px - 16px */
+        font-size: clamp(0.875rem, 3vw, 1rem);
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        padding: 0;
+        max-width: (500/16rem);
+        color: var(--bodyTextColorWhite);
+
+        .cs-small-text {
+          padding-left: (8/16rem);
+          line-height: 1.5rem;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 28rem) {
+    #hero-227 {
+      .cs-flex-group {
+        column-gap: (12/16rem);
+
+        .cs-button-solid,
+        .cs-button-transparent {
+          width: clamp((120/16rem), 3vw, (170/16rem));
+          margin-right: 0;
+          font-size: (13/16rem);
+          -webkit-font-smoothing: antialiased;
+          min-width: 7rem;
+          padding: 0 (6/16rem);
+          gap: clamp(0rem, 0.5vw, 0.5rem);
+
+          .cs-image {
+            width: (14/16rem);
+            height: (14/16rem);
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: 448px) and (max-width: 47.9rem) {
+    #hero-227 {
+      .cs-flex-group {
+        column-gap: clamp((8/16rem), 2.5vw, (16/16rem));
+
+        .cs-button-solid,
+        .cs-button-transparent {
+          width: clamp((150/16rem), 2.5vw, (180/16rem));
+          margin-right: 0;
+          font-size: (16/16rem);
+          -webkit-font-smoothing: antialiased;
+          padding: 0 (6/16rem);
+
+          .cs-image {
+            width: (17/16rem);
+            height: (17/16rem);
+          }
+        }
+      }
+    }
+  }
+
+  /* Tablet - 768px */
+  @media only screen and (min-width: 48rem) {
+    #hero-227 {
+      /* 32px - 40px */
+      padding: 0 clamp(2rem, 5vw, 2.5rem);
+
+      .cs-container {
+        padding-bottom: 0;
+
+        &:after {
+          /* Right Line */
+          content: "";
+          width: 1px;
+          height: 100%;
+          background: -moz-linear-gradient(
+            top,
+            rgba(250, 251, 252, 0) 0%,
+            rgba(250, 251, 252, 0.5) 100%
+          ); /* FF3.6-15 */
+          background: -webkit-linear-gradient(
+            top,
+            rgba(250, 251, 252, 0) 0%,
+            rgba(250, 251, 252, 0.5) 100%
+          ); /* Chrome10-25,Safari5.1-6 */
+          opacity: 1;
+          position: absolute;
+          display: block;
+          top: 0;
+          right: 0;
+        }
+      }
+
+      .cs-flex-group {
+        /* 44px - 88px */
+        margin-left: clamp(2.75rem, 5.9vw, 5.5rem);
+      }
+
+      .cs-card-group {
+        flex-direction: row;
+        position: relative;
+
+        &:before {
+          /* Top Line */
+          content: "";
+          /* make it extend past the left and right of the screen */
+          width: 150vw;
+          height: 1px;
+          background: -moz-linear-gradient(
+            left,
+            rgba(250, 251, 252, 0.5) 0%,
+            rgba(250, 251, 252, 0) 100%
+          ); /* FF3.6-15 */
+          background: -webkit-linear-gradient(
+            left,
+            rgba(250, 251, 252, 0.5) 0%,
+            rgba(250, 251, 252, 0) 100%
+          ); /* Chrome10-25,Safari5.1-6 */
+          opacity: 1;
+          position: absolute;
+          display: block;
+          top: 0;
+          /* these two properties center the line horizontally */
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      .cs-item {
+        &:before {
+          width: 1px;
+          height: 100vh;
+          background: -moz-linear-gradient(
+            top,
+            rgba(250, 251, 252, 0) 0%,
+            rgba(250, 251, 252, 0.5) 100%
+          ); /* FF3.6-15 */
+          background: -webkit-linear-gradient(
+            top,
+            rgba(250, 251, 252, 0) 0%,
+            rgba(250, 251, 252, 0.5) 100%
+          ); /* Chrome10-25,Safari5.1-6 */
+          top: auto;
+          left: auto;
+          right: 0;
+          bottom: (-64/16rem);
+        }
+
+        &:nth-of-type(1) {
+          /* makes the first line under the buttons shorter */
+          &:before {
+            height: (630/16rem);
+          }
+        }
+
+        &:last-of-type {
+          &:before,
+          &:after {
+            display: none;
+          }
+        }
+      }
+
+      .cs-link {
+        padding: clamp(2.75rem, 5.9vw, 5.5rem) clamp(2rem, 5.9vw, 2rem);
+      }
+    }
+  }
+
+  /* Desktop Parallax Effect - 1300px */
+  @media only screen and (min-width: 81.25rem) {
+    #hero-227 {
+      background-image: var(--hero-bg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+      .cs-picture {
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+</style>
