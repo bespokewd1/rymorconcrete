@@ -3,6 +3,7 @@
 @theme {
   --color-primary: var(--primary);
   --color-primaryLight: var(--primaryLight);
+  --color-bodyTextColorWhite: var(--bodyTextColorWhite);
 
   --animate-gleam: gleam 0.6s ease-in-out;
   --animate-shimmer: shimmer 1s linear 1;
@@ -20,9 +21,9 @@
 /* Add the gleam keyframes */
 @keyframes gleam {
   0% {
-    transform: translateX(-150%) skewX(-15deg);
+    left: -100%;
   }
   100% {
-    transform: translateX(150%) skewX(-15deg);
+    left: 100%;
   }
 }

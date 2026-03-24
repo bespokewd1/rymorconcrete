@@ -11,6 +11,27 @@ const { class: className, href: to = "/contact", ...props } = Astro.props;
 <a
   href={to}
   class:list={cn([
+    "group bg-primary hover:bg-primaryLight relative inline-flex h-12.5 items-center overflow-hidden rounded-full border-2 border-gray-900 px-5 py-2.5 text-sm font-semibold text-gray-900 transition",
+    className,
+  ])}
+>
+  <span class="relative z-10 inline-flex items-center gap-2">
+    <slot>
+      <Icon name="tabler:phone-call" size={17} />
+      Get a Free Quote
+    </slot>
+  </span>
+
+  <div
+    class="group-hover:animate-gleam pointer-events-none absolute top-0 bottom-0 w-[60%] -skew-x-12 bg-linear-to-r from-transparent via-white/80 to-transparent"
+    style="left: -100%;"
+  >
+  </div>
+</a>
+
+<!-- <a
+  href={to}
+  class:list={cn([
     "inline-flex items-center justify-center gap-2 rounded-md border border-slate-800",
     "mr-2 h-12.5 px-6 font-medium text-white transition-colors",
     "hover:animate-shimmer focus-visible:animate-shimmer",
@@ -21,7 +42,5 @@ const { class: className, href: to = "/contact", ...props } = Astro.props;
   ])}
 >
   <slot>
-    <Icon name="tabler:phone-call" size={17} />
-    Get a Free Quote
   </slot>
-</a>
+</a> -->

@@ -30,7 +30,7 @@ import homeData from "@data/home.json";
       class="relative inset-0 col-span-full mx-auto flex items-center py-12 md:px-6 xl:absolute xl:col-start-4 xl:col-end-7 xl:mx-0 xl:justify-self-start"
     >
       <div
-        class="w-full max-w-[680px] rounded-xl bg-orange-200 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-1 ring-black/10"
+        class="bg-primaryLight w-full max-w-[680px] rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-1 ring-black/10"
       >
         <div class="p-6 sm:p-8 md:p-10">
           <h2
@@ -55,14 +55,13 @@ import homeData from "@data/home.json";
           <div class="mt-8">
             <a
               href="/about"
-              class="group bg-primary hover:bg-primaryLight relative inline-flex items-center overflow-hidden rounded-full border-2 border-gray-900 px-5 py-2.5 text-sm font-semibold text-gray-900 transition"
+              class="group hover:bg-primary relative inline-flex items-center overflow-hidden rounded-full border-2 border-gray-900 px-5 py-2.5 text-sm font-semibold text-gray-900 transition"
             >
-              <!-- Wrap text in a relative span with z-index so it doesn't get covered by the shine -->
               <span class="relative z-10">Learn More</span>
 
-              <!-- The gleaming shine element -->
               <div
-                class="group-hover:animate-gleam absolute inset-0 -translate-x-[150%] bg-linear-to-r from-transparent via-white/80 to-transparent"
+                class="group-hover:animate-gleam pointer-events-none absolute top-0 bottom-0 w-[60%] -skew-x-12 bg-linear-to-r from-transparent via-white/80 to-transparent"
+                style="left: -100%;"
               >
               </div>
             </a>
