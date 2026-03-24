@@ -71,7 +71,7 @@ import CTALink from "@components/CTA/CTALink.astro";
                     aria-expanded="false"
                     aria-haspopup="menu"
                     class:list={[
-                      "cs-li-link cs-dropdown-toggle",
+                      "cs-li-link text-bodyTextColorWhite cs-dropdown-toggle",
                       { "cs-active": Astro.url.pathname.includes(entry.url) },
                     ]}
                   >
@@ -83,7 +83,7 @@ import CTALink from "@components/CTA/CTALink.astro";
                   <a
                     href={entry.url}
                     class:list={[
-                      "cs-li-link",
+                      "cs-li-link text-bodyTextColorWhite",
                       { "cs-active": Astro.url.pathname === entry.url },
                     ]}
                     aria-current={isCurrentPage(Astro.url.pathname, entry.url)}
@@ -102,7 +102,7 @@ import CTALink from "@components/CTA/CTALink.astro";
                       <li class="cs-drop-li">
                         <a
                           href={child.url}
-                          class="cs-li-link cs-drop-link"
+                          class="cs-li-link cs-drop-link text-bodyTextColorWhite"
                           aria-current={isCurrentPage(
                             Astro.url.pathname,
                             child.url,
@@ -121,7 +121,7 @@ import CTALink from "@components/CTA/CTALink.astro";
             <a
               href="/contact/"
               class:list={[
-                "cs-li-link",
+                "cs-li-link text-bodyTextColorWhite",
                 { "cs-active": Astro.url.pathname === "/contact/" },
               ]}
               aria-current={isCurrentPage(Astro.url.pathname, "/contact/")}
@@ -201,7 +201,13 @@ import CTALink from "@components/CTA/CTALink.astro";
       /* prevents padding from affecting height and width */
       box-sizing: border-box;
       padding: (12/16rem) (16/16rem);
-      background-color: #fff;
+      background: linear-gradient(
+        to right,
+        #d3c0a0 0%,
+        #b69f76 16%,
+        #b19a6f 22%,
+        #bfb5a3 100%
+      );
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       position: fixed;
       z-index: 10000;
@@ -781,7 +787,14 @@ import CTALink from "@components/CTA/CTALink.astro";
       /* prevents padding from affecting height and width */
       box-sizing: border-box;
       padding: 0 (16/16rem);
-      background-color: #fff;
+      /*background-color: #fff;*/
+      background: linear-gradient(
+        to right,
+        #d3c0a0 0%,
+        #b69f76 16%,
+        #b19a6f 22%,
+        #bfb5a3 100%
+      );
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       position: fixed;
       z-index: 10000;

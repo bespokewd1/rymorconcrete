@@ -63,7 +63,7 @@ export const QuickServiceCards = ({ className }: { className?: string }) => {
       <div className="pt-16">
         <div className="mx-auto mb-12 max-w-225 xl:max-w-full">
           <h2 className="cs-title font-acumin text-header text-body-light px-2 text-center text-4xl font-black text-balance">
-            Our Concrete Services
+            Our Services
           </h2>
         </div>
 
