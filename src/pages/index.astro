@@ -16,6 +16,8 @@ import HomeHero from "@components/Hero/HomeHero.astro";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Banner (for rendering)
 import heroImage from "@assets/images/OG.jpg";
+import { QuickServiceCards } from "@components/Services/QuickServiceCards";
+import { ServiceCards } from "@components/Services/ServiceCards";
 const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
 ---
 
@@ -27,6 +29,8 @@ const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
   <!-- <Hero image={optimizedHeroImage} /> -->
   <HomeHero image={optimizedHeroImage} />
   <!-- <Services /> -->
+  <QuickServiceCards client:visible />
+  <ServiceCards client:visible />
   <SideBySide />
   <SideBySideReverse />
   <Gallery />

@@ -139,6 +139,48 @@ import CTALink from "@components/CTA/CTALink.astro";
   </div>
 </header>
 
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  document.addEventListener("astro:page-load", () => {
+    document.addEventListener("click", async (event) => {
+      return;
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const anchor = target.closest("a");
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href || !href.startsWith("/services#")) return;
+
+      event.preventDefault();
+
+      const [path, id] = href.split("#");
+
+      // Navigate to the page first (without the hash)
+      await navigate(path);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = document.getElementById(id);
+          if (!el) return;
+
+          const blockPosition = window.innerWidth >= 1024 ? "center" : "start";
+
+          el.scrollIntoView({
+            behavior: "smooth",
+            block: blockPosition,
+          });
+
+          // Put the hash in the URL (no extra history entry)
+          history.replaceState(null, "", `${path}#${id}`);
+        });
+      });
+    });
+  });
+</script>
+
 <style lang="less">
   /*-- -------------------------- -->
 <---     Mobile Navigation      -->
