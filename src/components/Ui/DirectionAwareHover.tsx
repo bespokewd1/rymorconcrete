@@ -1,10 +1,6 @@
-"use client";
-
 import { useRef, useState } from "react";
-
 import { AnimatePresence, motion } from "motion/react";
 import cn from "@utils/cn";
-// import { cn } from "@/lib/utils";
 
 export const DirectionAwareHover = ({
   href,
@@ -33,7 +29,6 @@ export const DirectionAwareHover = ({
     if (!ref.current) return;
 
     const direction = getDirection(event, ref.current);
-    console.log("direction", direction);
     switch (direction) {
       case 0:
         setDirection("top");
@@ -81,7 +76,12 @@ export const DirectionAwareHover = ({
           whileHover={direction}
           exit="exit"
         >
-          <motion.div className="absolute inset-0 z-10 hidden h-full w-full bg-black/40 transition duration-500 group-hover/card:block" />
+          {/* Desktop Overlay: Darkens the whole image on hover */}
+          {/* <motion.div className="absolute inset-0 z-10 hidden h-full w-full bg-black/40 transition duration-500 group-hover/card:block max-lg:hidden" /> */}
+
+          {/* Touch/Mobile Overlay: A soft gradient always visible at the bottom to ensure text readability */}
+          <div className="absolute inset-x-0 bottom-0 z-10 h-[60%] bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
           <motion.div
             variants={variants}
             className="relative h-full w-full bg-gray-50 dark:bg-black"
@@ -101,6 +101,7 @@ export const DirectionAwareHover = ({
               src={imageUrl}
             />
           </motion.div>
+
           <motion.div
             variants={textVariants}
             transition={{
@@ -109,6 +110,8 @@ export const DirectionAwareHover = ({
             }}
             className={cn(
               "absolute bottom-4 left-4 z-40 text-white",
+              // Mobile overrides: Forces Framer Motion's invisible/sliding text to be completely static & visible on screens smaller than Desktop
+              "max-lg:!translate-x-0 max-lg:!translate-y-0 max-lg:!transform-none max-lg:!opacity-100",
               childrenClassName,
             )}
           >
@@ -124,7 +127,6 @@ const variants = {
   initial: {
     x: 0,
   },
-
   exit: {
     x: 0,
     y: 0,
@@ -147,12 +149,12 @@ const textVariants = {
   initial: {
     y: 0,
     x: 0,
-    opacity: 0,
+    opacity: 1,
   },
   exit: {
     y: 0,
     x: 0,
-    opacity: 0,
+    opacity: 1,
   },
   top: {
     y: -20,

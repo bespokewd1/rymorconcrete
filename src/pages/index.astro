@@ -18,6 +18,8 @@ import HomeHero from "@components/Hero/HomeHero.astro";
 import heroImage from "@assets/images/OG.jpg";
 import { QuickServiceCards } from "@components/Services/QuickServiceCards";
 import { ServiceCards } from "@components/Services/ServiceCards";
+import WhyChooseUs from "@components/WhyChoose/WhyChooseUs.astro";
+import ServiceSmallCards from "@components/Services/ServiceSmallCards.astro";
 const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
 ---
 
@@ -29,9 +31,11 @@ const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
   <!-- <Hero image={optimizedHeroImage} /> -->
   <HomeHero image={optimizedHeroImage} />
   <!-- <Services /> -->
+  <ServiceSmallCards />
+  <WhyChooseUs />
   <QuickServiceCards client:visible />
-  <ServiceCards client:visible />
-  <SideBySide />
+  <!-- <ServiceCards client:visible /> -->
+  <!-- <SideBySide /> -->
   <SideBySideReverse />
   <Gallery />
   <Testimonials />

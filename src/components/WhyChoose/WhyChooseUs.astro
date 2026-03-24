@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import whyChooseImg from "@assets/images/services/service-patiopads.jpg";
+import homeData from "@data/home.json";
+
+// const whyChooseImg = await resolveImage(homeData.whyChooseUs.image);
+---
+
+<section id="why-choose-us" class="px-0">
+  <div
+    class="relative mx-auto grid grid-cols-6 items-stretch gap-0 px-6 py-12 md:py-14 lg:py-16"
+  >
+    <!-- Left image -->
+    <div
+      class="relative col-span-full xl:col-start-2 xl:col-end-4 xl:justify-self-end"
+    >
+      {
+        whyChooseImg && (
+          <Image
+            src={whyChooseImg}
+            class="mx-auto block aspect-square w-full max-w-[600px] object-cover lg:h-full xl:ms-0"
+            alt={homeData.whyChooseUs.alt}
+          />
+        )
+      }
+    </div>
+
+    <!-- Card with bullets -->
+    <div
+      class="relative inset-0 col-span-full mx-auto flex items-center py-12 md:px-6 xl:absolute xl:col-start-4 xl:col-end-7 xl:mx-0 xl:justify-self-start"
+    >
+      <div
+        class="w-full max-w-[680px] rounded-xl bg-orange-200 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-1 ring-black/10"
+      >
+        <div class="p-6 sm:p-8 md:p-10">
+          <h2
+            class="font-serif text-[clamp(var(--text-2xl),5vw,var(--text-4xl))] leading-snug text-gray-950"
+          >
+            The Concrete Experts in Edmonton
+          </h2>
+
+          <p class="mt-4 leading-7 text-gray-700">
+            At Rymor Concrete Co, we specialize in delivering strong,
+            long-lasting concrete solutions tailored to Alberta’s demanding
+            climate. Whether you're upgrading your backyard patio, extending a
+            sidewalk, or installing a new parking lot, we bring precision,
+            durability, and attention to detail to every project.
+          </p>
+
+          <p class="mt-4 leading-7 text-gray-700">
+            Our team is committed to quality workmanship, reliable service, and
+            results that stand the test of time.
+          </p>
+
+          <div class="mt-8">
+            <a
+              href="/about"
+              class="group bg-primary hover:bg-primaryLight relative inline-flex items-center overflow-hidden rounded-full border-2 border-gray-900 px-5 py-2.5 text-sm font-semibold text-gray-900 transition"
+            >
+              <!-- Wrap text in a relative span with z-index so it doesn't get covered by the shine -->
+              <span class="relative z-10">Learn More</span>
+
+              <!-- The gleaming shine element -->
+              <div
+                class="group-hover:animate-gleam absolute inset-0 -translate-x-[150%] bg-linear-to-r from-transparent via-white/80 to-transparent"
+              >
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

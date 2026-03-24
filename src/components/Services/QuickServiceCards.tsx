@@ -20,40 +20,36 @@ import { DirectionAwareHover } from "@components/Ui/DirectionAwareHover";
 export const QuickServiceCards = ({ className }: { className?: string }) => {
   const serviceItems = [
     {
-      title: "Concrete Driveways",
+      title: "Concrete Flatwork",
+      description:
+        "We install high-quality driveways, garage pads, sidewalks, and concrete surfaces built for durability and performance.",
       link: "/services#driveways",
       imgData: hottub,
       icon: IconRoad,
     },
     {
-      title: "Patio Pads & Outdoor Spaces",
+      title: "Decorative & Stamped Concrete",
+      description:
+        "Enhance your space with custom stamped concrete, exposed aggregate, and modern finishes designed to elevate curb appeal.",
       link: "/services#patio",
       imgData: patiopads,
       icon: IconBuildingWarehouse,
     },
     {
-      title: "Stamped & Decorative Concrete",
+      title: "Patio Pads & Outdoor Spaces",
       link: "/services#stamped",
+      description:
+        "Create the perfect outdoor area with professionally installed concrete patios, including custom designs and finishes.",
       imgData: stamped,
       icon: IconSparkles,
     },
     {
-      title: "Sidewalks & Walkways",
+      title: "Commercial Concrete",
       link: "/services#sidewalks",
+      description:
+        "From parking lots to walkways, we provide reliable concrete solutions for commercial properties.",
       imgData: sideExt,
       icon: IconWalk,
-    },
-    {
-      title: "Parking Lots (Commercial)",
-      link: "/services#parking-lots",
-      imgData: sidewalk,
-      icon: IconParking,
-    },
-    {
-      title: "Repairs & Resurfacing",
-      link: "/services#repairs",
-      imgData: construction,
-      icon: IconTool,
     },
   ] as const;
 
@@ -73,7 +69,7 @@ export const QuickServiceCards = ({ className }: { className?: string }) => {
 
         {/* Mobile First Grid Container */}
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {serviceItems.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -82,12 +78,17 @@ export const QuickServiceCards = ({ className }: { className?: string }) => {
                   imageUrl={item.imgData.src}
                   href={item.link}
                   // Overriding the default fixed w/h to match the grid cell
-                  className="h-64 w-full md:h-80 md:w-full"
+                  className="h-64 w-full md:h-90 md:w-full"
                 >
                   <div className="flex flex-col gap-2">
-                    <Icon className="h-8 w-8 text-white" stroke={1.5} />
-                    <p className="text-xl font-bold text-balance text-white">
-                      {item.title}
+                    <div className="inline-flex items-center gap-2">
+                      <Icon className="h-8 w-8 text-white" stroke={1.5} />
+                      <h3 className="text-xl font-bold text-balance text-white">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="text-pretty text-white/80">
+                      {item.description}
                     </p>
                   </div>
                 </DirectionAwareHover>
