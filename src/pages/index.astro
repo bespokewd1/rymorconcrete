@@ -20,6 +20,8 @@ import { QuickServiceCards } from "@components/Services/QuickServiceCards";
 import { ServiceCards } from "@components/Services/ServiceCards";
 import WhyChooseUs from "@components/WhyChoose/WhyChooseUs.astro";
 import ServiceSmallCards from "@components/Services/ServiceSmallCards.astro";
+import GalleryBento from "@components/Gallery/GalleryBento.astro";
+import WhyChooseSection from "@components/WhyChoose/WhyChooseSection.astro";
 const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
 ---
 
@@ -37,7 +39,9 @@ const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
   <!-- <ServiceCards client:visible /> -->
   <!-- <SideBySide /> -->
   <!-- <SideBySideReverse /> -->
-  <Gallery />
+  <WhyChooseSection />
+  <GalleryBento />
+  <!-- <Gallery /> -->
   <Testimonials />
   <FAQ />
   <CTASimple />

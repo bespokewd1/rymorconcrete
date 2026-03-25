@@ -1,0 +1,53 @@
+---
+import { rawImages } from "@data/galleryImage";
+import { getImage } from "astro:assets";
+import GalleryBentoReact from "./GalleryBentoReact";
+// import GalleryBentoReact from "./GalleryBentoReact";
+
+type GalleryImage = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  spanClass: string;
+  imgClass: string;
+};
+
+const optimizedImages: GalleryImage[] = await Promise.all(
+  rawImages.map(async (img, index) => {
+    const ratio = img.width / img.height;
+
+    let spanClass = "md:col-span-1";
+    let imgClass = "object-cover";
+    let targetWidth = 900;
+
+    if (ratio > 1.6) {
+      spanClass = "md:col-span-2";
+      imgClass = "";
+      targetWidth = 1400;
+    } else if (ratio < 0.9) {
+      spanClass = "md:row-span-2";
+      imgClass = "";
+      targetWidth = 900;
+    }
+
+    const optimized = await getImage({
+      src: img,
+      format: "webp",
+      quality: 80,
+      width: Math.min(img.width, targetWidth),
+    });
+
+    return {
+      src: optimized.src,
+      width: optimized.attributes.width,
+      height: optimized.attributes.height,
+      alt: `Portfolio image ${index + 1}`,
+      spanClass,
+      imgClass,
+    };
+  }),
+);
+---
+
+<GalleryBentoReact images={optimizedImages} />
