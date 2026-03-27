@@ -8,6 +8,8 @@
 
   --animate-gleam: gleam 0.6s ease-in-out;
   --animate-shimmer: shimmer 1s linear 1;
+
+  --breakpoint-3xl: 120rem;
 }
 
 @keyframes shimmer {

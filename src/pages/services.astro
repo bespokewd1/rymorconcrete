@@ -1,0 +1,143 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ServiceSection, {
+  type Feature,
+  type ServiceProps,
+} from "@components/Services/ServiceSection.astro";
+import CTASection from "@components/CTA/CTASection.astro";
+
+// Reusing the images you already imported in QuickServiceCards
+import hottub from "@assets/images/services/services-hottubpad.jpg";
+import patiopads from "@assets/images/services/service-patiopads.jpg";
+import stamped from "@assets/images/services/services-stampedDecorative.jpg";
+import sideExt from "@assets/images/services/services-sidewalkextensions.jpg";
+import construction from "@assets/images/services/construction.jpg"; // Assuming you have an image for repairs
+
+// The Data for the page
+const servicesData: ServiceProps[] = [
+  {
+    id: "flatwork",
+    badge: "Concrete Flatwork",
+    title: "Durable Driveways & Garage Pads",
+    description:
+      "Your driveway is the first thing people see. We specialize in high-quality, poured concrete flatwork designed to withstand Alberta’s demanding freeze-thaw cycles without compromising on aesthetics.",
+    features: [
+      { name: "Custom driveways built for heavy loads", icon: "tabler:road" },
+      { name: "Precision-leveled garage pads", icon: "tabler:car-garage" },
+      {
+        name: "Reinforced rebar & sub-base prep",
+        icon: "tabler:barrier-block",
+      },
+    ],
+    image: hottub.src,
+    image2: patiopads.src,
+    imageAlt: "Newly poured concrete flatwork for a residential home",
+  },
+  {
+    id: "patios",
+    badge: "Outdoor Living",
+    title: "Patio Pads & Outdoor Spaces",
+    description:
+      "Extend your living space into the outdoors. Whether you're planning a base for a hot tub, a fire pit area, or a massive backyard entertainment space, we pour perfectly graded and finished concrete patios.",
+    features: [
+      { name: "Custom layouts for your landscaping", icon: "tabler:leaf" },
+      { name: "Reinforced hot tub pads", icon: "tabler:bath" },
+      { name: "Seamless home-to-yard transitions", icon: "tabler:door-enter" },
+    ],
+    image: patiopads.src,
+    image2: hottub.src,
+    imageAlt: "Finished concrete patio pad with outdoor furniture",
+  },
+  {
+    id: "decorative",
+    badge: "Premium Finishes",
+    title: "Stamped & Decorative Concrete",
+    description:
+      "Elevate your property's curb appeal with high-end decorative finishes. We offer custom stamping, texturing, and coloring to mimic the look of natural stone, brick, or wood at a fraction of the cost.",
+    features: [
+      {
+        name: "Wide variety of stamp patterns",
+        icon: "tabler:layers-intersect",
+      },
+      { name: "High-traction exposed aggregate", icon: "tabler:sparkles" },
+      { name: "Premium UV-resistant sealers", icon: "tabler:sun-high" },
+    ],
+    image: stamped.src,
+    image2: sideExt.src,
+    imageAlt: "Beautiful stamped concrete pathway with a high-gloss seal",
+  },
+  {
+    id: "commercial",
+    badge: "Commercial Projects",
+    title: "Commercial Concrete Solutions",
+    description:
+      "We understand that commercial projects require strict deadlines, safety protocols, and heavy-duty materials. From expansive parking lots to public walkways, we deliver results that your business can rely on.",
+    features: [
+      {
+        name: "Heavy-duty parking lots & loading docks",
+        icon: "tabler:parking",
+      },
+      { name: "ADA-compliant ramps & sidewalks", icon: "tabler:wheelchair" },
+      { name: "Curb and gutter extensions", icon: "tabler:arrow-guide" },
+    ],
+    image: sideExt.src,
+    image2: stamped.src,
+    imageAlt: "Commercial concrete sidewalk extension and curb work",
+  },
+  {
+    id: "repairs",
+    badge: "Maintenance & Restoration",
+    title: "Repairs & Resurfacing",
+    description:
+      "Don't let cracked, uneven, or spalling concrete ruin your property's value. We provide comprehensive repair services to restore the safety and appearance of your aging concrete surfaces.",
+    features: [
+      { name: "Crack routing & industrial sealing", icon: "tabler:tool" },
+      { name: "Surface grinding & trip-hazard removal", icon: "tabler:hammer" },
+      { name: "Complete resurfacing & top-coats", icon: "tabler:paint" },
+    ],
+    image: construction.src,
+    image2: patiopads.src,
+    imageAlt: "Concrete repair and construction work in progress",
+  },
+];
+---
+
+<BaseLayout
+  title="Our Concrete Services | Rymor Concrete Co."
+  description="Explore our specialized concrete services including driveways, patios, stamped concrete, and commercial flatwork in Edmonton."
+>
+  {/* Optional: Add a simple Hero for the services page here */}
+  <div class="bg-zinc-900 py-20 text-center text-white">
+    <h1
+      class="font-mont text-primaryLight text-4xl font-bold md:text-5xl lg:text-6xl"
+    >
+      Our Services
+    </h1>
+    <p class="mt-4 text-lg text-zinc-300">
+      Precision concrete for every project.
+    </p>
+  </div>
+
+  {/* Map through our data to render the sections automatically alternating */}
+  <div>
+    {
+      servicesData.map((service, index) => (
+        <ServiceSection
+          id={service.id}
+          badge={service.badge}
+          title={service.title}
+          description={service.description}
+          features={service.features}
+          image={service.image}
+          image2={service.image2}
+          imageAlt={service.imageAlt}
+          reversed={index % 2 !== 0}
+          darkBg={index % 2 !== 0}
+        />
+      ))
+    }
+  </div>
+
+  {/* Close out the page with a strong CTA */}
+  <CTASection />
+</BaseLayout>

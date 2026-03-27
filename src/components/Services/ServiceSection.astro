@@ -1,0 +1,133 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import cn from "@utils/cn"; // Assuming you have this from your snippets
+import CTALink from "@components/CTA/CTALink.astro"; // Reusing your CTA button
+import { Compare } from "@components/Ui/Compare";
+import { IconMessage2 } from "@tabler/icons-react";
+
+export type Feature = { icon: string; name: string };
+
+export interface ServiceProps {
+  id: string;
+  badge: string;
+  title: string;
+  description: string;
+  features: Feature[];
+  image: string;
+  image2: string;
+  imageAlt: string;
+  reversed?: boolean;
+  darkBg?: boolean;
+}
+
+const {
+  id,
+  badge,
+  title,
+  description,
+  features,
+  image,
+  image2,
+  imageAlt,
+  reversed = false,
+  darkBg = false,
+} = Astro.props as ServiceProps;
+---
+
+<section
+  id={id}
+  class={cn(
+    "overflow-hidden py-16 md:py-24",
+    darkBg ? "bg-neutral-50" : "bg-white",
+  )}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* Image Container */}
+      <div
+        class={cn(
+          "relative mx-auto w-full max-w-xl lg:max-w-none",
+          reversed ? "lg:order-2" : "lg:order-1",
+        )}
+      >
+        {/* Decorative background block to match the primary brand color */}
+        <div
+          class={cn(
+            "bg-primary absolute -inset-2 rounded-3xl opacity-50 sm:-inset-4",
+          )}
+        >
+          <!-- reversed
+              ? "translate-x-4 translate-y-4"
+              : "-translate-x-4 translate-y-4", -->
+        </div>
+
+        <div
+          class="relative overflow-hidden rounded-2xl border border-neutral-200 shadow-xl"
+        >
+          <Compare
+            firstImage={image}
+            secondImage={image2}
+            firstImageClassName="object-cover object-left-top"
+            secondImageClassname="object-cover object-left-top"
+            className="aspect-video size-full"
+            slideMode="hover"
+            autoplay={true}
+            client:visible
+          />
+          <!-- <Image
+            src={image}
+            alt={imageAlt}
+            width={800}
+            height={600}
+            class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
+          /> -->
+        </div>
+      </div>
+
+      {/* Text Content */}
+      <div
+        class={cn(
+          "flex flex-col justify-center",
+          reversed ? "lg:order-1" : "lg:order-2",
+        )}
+      >
+        <span
+          class="text-primary mb-3 text-sm font-bold tracking-wider uppercase"
+        >
+          {badge}
+        </span>
+        <h2
+          class="font-mont text-fore-dark mb-6 text-3xl font-bold md:text-4xl lg:text-5xl"
+        >
+          {title}
+        </h2>
+        <p class="mb-8 text-lg leading-relaxed text-neutral-600">
+          {description}
+        </p>
+
+        {/* Features List */}
+        <ul class="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {
+            features.map((feature) => (
+              <li class="group hover:border-primaryLight hover:bg-primary/20 flex items-center gap-4 rounded-lg border border-neutral-200 bg-white px-5 py-3.5 transition-colors duration-200">
+                <Icon
+                  name={feature.icon}
+                  class="text-primary size-6 shrink-0"
+                />
+                <span class="text-sm font-medium text-slate-700">
+                  {feature.name}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+
+        {/* Action Area */}
+        <div>
+          <CTALink href={`/contact?service=${id}`}> Get a Free Quote </CTALink>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
