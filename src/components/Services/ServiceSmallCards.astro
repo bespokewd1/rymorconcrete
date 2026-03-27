@@ -1,68 +1,95 @@
 ---
 import { Icon } from "astro-icon/components";
 
-// IconBuildingWarehouse,
-// IconParking,
-// IconRoad,
-// IconSparkles,
-// IconTool,
-// IconWalk,
-
+// Updated list with your requested labels and added short descriptions
+// to make the cards look balanced and professional.
 const serviceSections = [
   {
     id: "concrete-driveways",
     icon: "tabler:road",
-    label: "Driveways",
+    label: "Concrete Driveways",
+    desc: "Durable, high-quality driveways built to withstand harsh weather.",
   },
   {
     id: "patios-outdoor-spaces",
     icon: "tabler:sun",
     label: "Patios & Outdoor",
+    desc: "Extend your living space with custom-designed concrete patios.",
   },
   {
     id: "stamped-decorative-concrete",
     icon: "tabler:layers-intersect",
     label: "Stamped & Decorative",
+    desc: "Premium finishes mimicking stone, brick, or tile for instant curb appeal.",
   },
   {
     id: "sidewalks-walkways",
     icon: "tabler:walk",
-    label: "Sidewalks",
+    label: "Sidewalks & Walkways",
+    desc: "Safe, accessible, and attractive pathways for your home or business.",
   },
   {
     id: "commercial-parking-lots",
     icon: "tabler:parking",
     label: "Parking Lots",
+    desc: "Heavy-duty commercial concrete solutions for high-traffic areas.",
   },
   {
     id: "repairs-resurfacing",
     icon: "tabler:tool",
-    label: "Repairs",
+    label: "Repairs & Resurfacing",
+    desc: "Restore cracked, uneven, or aging concrete to look like new again.",
   },
 ];
 ---
 
-<section
-  class="border-b border-neutral-200 bg-white backdrop-blur-sm"
-  id="service-nav"
->
-  <div class="mx-auto max-w-7xl px-4 sm:px-8">
-    <div
-      class="scrollbar-hide flex gap-1 overflow-x-auto py-3 sm:justify-center sm:gap-2"
-    >
+<section class="bg-neutral-50 py-16 md:py-24" id="quick-services">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-12 text-center md:mb-16">
+      <h2
+        class="font-mont text-fore-dark mb-4 text-3xl font-bold tracking-tight md:text-4xl"
+      >
+        Our Concrete Services
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg text-neutral-600">
+        Professional, long-lasting concrete solutions tailored to your specific
+        needs.
+      </p>
+    </div>
+
+    <!-- 6-Box Grid -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
       {
         serviceSections.map((section) => (
           <a
-            href={`#${section.id}`}
-            class="service-nav-link group font-mont text-fore-dark/80 hover:bg-accent/20 hover:text-fore-dark flex shrink-0 items-center gap-2 rounded-sm px-4 py-2.5 text-sm font-semibold transition-all duration-300"
-            data-section={section.id}
+            href={`/services#${section.id}`}
+            class="group hover:border-accent/30 relative flex flex-col items-center rounded-2xl border border-neutral-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
-            <Icon
-              name={section.icon}
-              class="text-accent group-hover:text-primary size-4 transition-colors"
-            />
-            <span class="hidden sm:inline">{section.label}</span>
-            <span class="sm:hidden">{section.label.split(" ")[0]}</span>
+            {/* Icon Wrapper */}
+            <div class="bg-accent/10 group-hover:bg-accent mb-6 flex size-16 items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110">
+              <Icon
+                name={section.icon}
+                class="text-accent group-hover:text-primary size-8 transition-colors duration-300"
+              />
+            </div>
+
+            {/* Content */}
+            <h3 class="font-mont text-fore-dark group-hover:text-accent mb-3 text-xl font-bold transition-colors">
+              {section.label}
+            </h3>
+            <p class="mb-6 grow leading-relaxed text-neutral-600">
+              {section.desc}
+            </p>
+
+            {/* Clickable Indicator */}
+            <div class="text-accent mt-auto flex items-center text-sm font-semibold transition-all group-hover:gap-2">
+              <span>Learn more</span>
+              <Icon
+                name="tabler:arrow-right"
+                class="ml-1 size-4 transition-transform group-hover:translate-x-1"
+              />
+            </div>
           </a>
         ))
       }

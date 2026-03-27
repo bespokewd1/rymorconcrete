@@ -1,0 +1,175 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section class="bg-neutral-50 py-16 md:py-24" id="contact">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-8">
+      {/* Left Column: Contact Details Panel (Styled like your About Card) */}
+      <div
+        class="bg-primary flex h-full flex-col justify-center rounded-2xl p-8 text-gray-900 shadow-lg md:p-12"
+      >
+        <h2 class="font-mont mb-4 text-3xl font-bold md:text-4xl">
+          Get in Touch
+        </h2>
+        <p class="mb-10 text-lg text-gray-900/80">
+          Have a project in mind? We'd love to hear from you. Reach out today
+          for a free consultation and let's build something lasting.
+        </p>
+
+        <div class="space-y-8">
+          {/* Phone */}
+          <div class="flex items-center gap-5">
+            <div
+              class="flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-900/10 transition-colors hover:bg-gray-900/20"
+            >
+              <Icon name="tabler:phone" class="size-6 text-gray-900" />
+            </div>
+            <div>
+              <p
+                class="text-xs font-bold tracking-wider text-gray-900/70 uppercase"
+              >
+                Call Us
+              </p>
+              <a
+                href="tel:7802632483"
+                class="text-lg font-bold transition-opacity hover:opacity-70"
+                >780-263-2483</a
+              >
+            </div>
+          </div>
+
+          {/* Email */}
+          <div class="flex items-center gap-5">
+            <div
+              class="flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-900/10 transition-colors hover:bg-gray-900/20"
+            >
+              <Icon name="tabler:mail" class="size-6 text-gray-900" />
+            </div>
+            <div>
+              <p
+                class="text-xs font-bold tracking-wider text-gray-900/70 uppercase"
+              >
+                Email Us
+              </p>
+              <a
+                href="mailto:rymor.concreteco@gmail.com"
+                class="text-lg font-bold break-all transition-opacity hover:opacity-70"
+                >rymor.concreteco@gmail.com</a
+              >
+            </div>
+          </div>
+
+          {/* Location */}
+          <div class="flex items-center gap-5">
+            <div
+              class="flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-900/10 transition-colors hover:bg-gray-900/20"
+            >
+              <Icon name="tabler:map-pin" class="size-6 text-gray-900" />
+            </div>
+            <div>
+              <p
+                class="text-xs font-bold tracking-wider text-gray-900/70 uppercase"
+              >
+                Location
+              </p>
+              <p class="text-lg font-bold">Edmonton, Alberta</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Column: Contact Form */}
+      <div
+        class="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm md:p-12"
+      >
+        <h3 class="font-mont mb-6 text-2xl font-bold text-gray-900">
+          Request a Quote
+        </h3>
+
+        <form class="space-y-6" action="#" method="POST">
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <label
+                for="name"
+                class="mb-1.5 block text-sm font-semibold text-gray-700"
+                >Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="John Doe"
+                class="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+              />
+            </div>
+            <div>
+              <label
+                for="phone"
+                class="mb-1.5 block text-sm font-semibold text-gray-700"
+                >Phone</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                placeholder="(780) 123-4567"
+                class="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="email"
+              class="mb-1.5 block text-sm font-semibold text-gray-700"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="john@example.com"
+              class="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+            />
+          </div>
+
+          <div>
+            <label
+              for="details"
+              class="mb-1.5 block text-sm font-semibold text-gray-700"
+              >Project Details</label
+            >
+            <textarea
+              id="details"
+              name="details"
+              rows="4"
+              required
+              placeholder="Tell us about your concrete project..."
+              class="w-full resize-none rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+            ></textarea>
+          </div>
+
+          {/* Submit Button styled to exactly match your CTALink component */}
+          <button
+            type="submit"
+            class="group bg-primary hover:bg-primaryLight relative mt-2 inline-flex h-12.5 w-full items-center justify-center overflow-hidden rounded-full border-2 border-gray-900 px-5 py-2.5 text-sm font-semibold text-gray-900 transition"
+          >
+            <span class="relative z-10 inline-flex items-center gap-2">
+              <Icon name="tabler:send" size={18} />
+              Send Message
+            </span>
+            <div
+              class="group-hover:animate-gleam pointer-events-none absolute top-0 bottom-0 w-[60%] -skew-x-12 bg-linear-to-r from-transparent via-white/80 to-transparent"
+              style="left: -100%;"
+            >
+            </div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

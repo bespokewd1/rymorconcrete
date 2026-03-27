@@ -1,0 +1,59 @@
+---
+import { Icon } from "astro-icon/components";
+// Make sure this path matches where your CTALink is stored
+import CTALink from "./CTALink.astro";
+
+interface Props {
+  title?: string;
+  text?: string;
+  phone?: string;
+}
+
+const {
+  title = "Ready to Start Your Concrete Project?",
+  text = "Get in touch today for a free quote and expert advice.",
+  phone = "780-263-2483",
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-zinc-900 py-20 lg:py-28">
+  {/* Decorative Subtle Grid Background */}
+  <div
+    class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-10"
+  >
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+    <h2
+      class="font-mont mb-6 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl"
+    >
+      {title}
+    </h2>
+    <p class="mx-auto mb-10 max-w-2xl text-lg text-zinc-300 sm:text-xl">
+      {text}
+    </p>
+
+    <div
+      class="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+    >
+      {/* Primary Quote Button using your CTALink */}
+      <CTALink href="/contact" class="w-full px-8 sm:w-auto">
+        <Icon name="tabler:clipboard-list" size={20} />
+        Request a Quote
+      </CTALink>
+
+      {/* Secondary Call Button */}
+      <a
+        href={`tel:${phone.replace(/-/g, "")}`}
+        class="group flex h-12.5 w-full items-center justify-center gap-2 rounded-full border-2 border-white/20 bg-transparent px-8 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-zinc-900 sm:w-auto"
+      >
+        <Icon
+          name="tabler:phone"
+          size={20}
+          class="transition-transform group-hover:scale-110 group-hover:-rotate-12"
+        />
+        Call {phone}
+      </a>
+    </div>
+  </div>
+</section>
