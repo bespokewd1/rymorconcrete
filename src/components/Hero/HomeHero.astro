@@ -32,12 +32,9 @@ const { image } = Astro.props as Props;
       </a> -->
       <!-- bg-size-[200%_100%] -->
       <!-- "bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)]", -->
-      <CTALink class:list={"mr-2 mb-2"}>
-        <Icon name="tabler:phone-call" size={17} />
-        Get a Free Quote
-      </CTALink>
-      <CTALink href={`sms:${BUSINESS.phoneForTel}`}>
-        <Icon name="tabler:device-mobile" size={20} />
+      <CTALink class:list={"mr-2 mb-2"}> Get a Free Quote </CTALink>
+
+      <CTALink icon="tabler:device-mobile" href={`sms:${BUSINESS.phoneForTel}`}>
         <span class="inline-flex flex-col items-center justify-center">
           <span class="leading-[1em]">Call Now:</span>
           <span class="leading-[1em]">780-263-2483</span>

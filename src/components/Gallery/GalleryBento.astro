@@ -3,6 +3,11 @@ import { rawImages } from "@data/galleryImage";
 import { getImage } from "astro:assets";
 import GalleryBentoReact from "./GalleryBentoReact";
 // import GalleryBentoReact from "./GalleryBentoReact";
+interface Props {
+  forPage?: boolean;
+  bentoClass?: string;
+  containerClass?: string;
+}
 
 type GalleryImage = {
   src: string;
@@ -48,6 +53,13 @@ const optimizedImages: GalleryImage[] = await Promise.all(
     };
   }),
 );
+
+const { forPage = false, bentoClass, containerClass } = Astro.props;
 ---
 
-<GalleryBentoReact images={optimizedImages} />
+<GalleryBentoReact
+  bentoClass={bentoClass}
+  containerClass={containerClass}
+  forPage={forPage}
+  images={optimizedImages}
+/>

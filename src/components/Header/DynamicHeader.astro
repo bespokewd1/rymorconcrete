@@ -95,14 +95,14 @@ import CTALink from "@components/CTA/CTALink.astro";
                 {entry.children?.length > 0 && (
                   // If entry has children in navData.json, create a drop down menu
                   <ul
-                    class="cs-drop-ul"
+                    class="cs-drop-ul bg-primary"
                     aria-labelledby={getDropdownId(entry.key)}
                   >
                     {entry.children.map((child) => (
                       <li class="cs-drop-li">
                         <a
                           href={child.url}
-                          class="cs-li-link cs-drop-link text-bodyTextColorWhite"
+                          class="cs-li-link hover:bg-bodyTextColor cs-drop-link text-bodyTextColorWhite"
                           aria-current={isCurrentPage(
                             Astro.url.pathname,
                             child.url,

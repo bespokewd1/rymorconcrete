@@ -12,6 +12,7 @@ import patiopads from "@assets/images/services/service-patiopads.jpg";
 import stamped from "@assets/images/services/services-stampedDecorative.jpg";
 import sideExt from "@assets/images/services/services-sidewalkextensions.jpg";
 import construction from "@assets/images/services/construction.jpg"; // Assuming you have an image for repairs
+import TextBanner from "@components/Banner/TextBanner.astro";
 
 // The Data for the page
 const servicesData: ServiceProps[] = [
@@ -107,16 +108,11 @@ const servicesData: ServiceProps[] = [
   description="Explore our specialized concrete services including driveways, patios, stamped concrete, and commercial flatwork in Edmonton."
 >
   {/* Optional: Add a simple Hero for the services page here */}
-  <div class="bg-zinc-900 py-20 text-center text-white">
-    <h1
-      class="font-mont text-primaryLight text-4xl font-bold md:text-5xl lg:text-6xl"
-    >
-      Our Services
-    </h1>
+  <TextBanner label="Our Services">
     <p class="mt-4 text-lg text-zinc-300">
       Precision concrete for every project.
     </p>
-  </div>
+  </TextBanner>
 
   {/* Map through our data to render the sections automatically alternating */}
   <div>

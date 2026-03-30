@@ -12,382 +12,215 @@ import { BUSINESS } from "@data/client";
 // Images
 import landingImage from "@assets/images/landing.jpg"; // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
 import skyscraperImage from "@assets/images/gallery/skyscraper.jpg";
+import { Icon } from "astro-icon/components";
+import TextBanner from "@components/Banner/TextBanner.astro";
+import CTASection from "@components/CTA/CTASection.astro";
 const optimizedImage = await getImage({ src: landingImage, format: "webp" });
 ---
 
-<BaseLayout title="Contact" description="Meta description for the page" heroImage={optimizedImage}>
-	<Banner title="Contact" image={optimizedImage} />
+<BaseLayout
+  title="Contact"
+  description="Meta description for the page"
+  heroImage={optimizedImage}
+>
+  <section class="relative flex flex-col gap-[clamp(3rem,6vw,4rem)]">
+    <TextBanner label="Contact Us" />
+    <div
+      class="py-section-padding mx-auto flex w-full max-w-[36.25rem] flex-col items-center justify-center gap-[clamp(3rem,6vw,4rem)] lg:max-w-[80rem] lg:flex-row lg:items-stretch lg:justify-between lg:gap-[3.25rem]"
+    >
+      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-1 lg:gap-8">
+        {/* Left Column: Contact Details Panel (Styled like your About Card) */}
 
-	<section id="cs-contact">
-		<div class="cs-container">
-			<form id="cs-form" name="Contact Form" method="post">
-				<div class="cs-content">
-					<span class="cs-topper">Contact</span>
-					<h2 class="cs-title">Get in Touch</h2>
-					<p class="cs-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ridiculus elementum ullamcorper ipsum porttitor aliquam. Id magna urna ultrices odio pulvinar. Sed ut.</p>
-				</div>
-				<label>
-					Name
-					<input required type="text" id="name" name="name" placeholder="Name" />
-				</label>
-				<label>
-					Email
-					<input required type="text" id="email" name="email" placeholder="Email" />
-				</label>
-				<label>
-					Phone
-					<input required type="text" id="phone" name="phone" placeholder="Phone" />
-				</label>
-				<label>
-					How Did You Find Us
-					<input type="text" id="find" name="find-us" placeholder="How did you find us?" />
-				</label>
-				<label class="cs-label-message">
-					Message
-					<textarea required name="Message" id="message" placeholder="Write message..."></textarea>
-				</label>
-				<button class="cs-button-solid" type="submit">Submit Message</button>
-			</form>
-			<div class="cs-right-section">
-				<!--Email-->
-				<span class="cs-header">Email</span>
-				<a class="cs-link" href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
-				<!--Phone-->
-				<span class="cs-header">Phone</span>
-				<a class="cs-link" href={`tel:${BUSINESS.phoneForTel}`}>{BUSINESS.phoneFormatted}</a>
-				<!--Address-->
-				<span class="cs-header">Address</span>
-				<a class="cs-link" href={BUSINESS.address.mapLink}>
-					{BUSINESS.address.lineOne},
-					<br />
-					{BUSINESS.address.lineTwo},
-					<br />
-					<span class="cs-block">
-						{BUSINESS.address.city}
-						{BUSINESS.address.state}
-						{BUSINESS.address.zip}
-					</span>
-				</a>
+        {/* Right Column: Contact Form */}
+        <div
+          class="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm md:p-12"
+        >
+          <h3 class="font-mont mb-6 text-2xl font-bold text-gray-900">
+            Request a Quote
+          </h3>
 
-				<!-- Background Image-->
-				<Picture src={skyscraperImage} alt="building" width={2500} height={1667} formats={["avif", "webp"]} pictureAttributes={{ class: "cs-bg-picture" }} />
-			</div>
-		</div>
-	</section>
+          <form class="space-y-6" action="#" method="POST">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div>
+                <label
+                  for="name"
+                  class="mb-1.5 block text-sm font-semibold text-gray-700"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="John Doe"
+                  class="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+                />
+              </div>
+              <div>
+                <label
+                  for="phone"
+                  class="mb-1.5 block text-sm font-semibold text-gray-700"
+                  >Phone</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="(780) 123-4567"
+                  class="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="email"
+                class="mb-1.5 block text-sm font-semibold text-gray-700"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="john@example.com"
+                class="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+              />
+            </div>
+
+            <div>
+              <label
+                for="details"
+                class="mb-1.5 block text-sm font-semibold text-gray-700"
+                >Project Details</label
+              >
+              <textarea
+                id="details"
+                name="details"
+                rows="4"
+                required
+                placeholder="Tell us about your concrete project..."
+                class="w-full resize-none rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-all outline-none focus:border-gray-900 focus:bg-white focus:ring-1 focus:ring-gray-900"
+              ></textarea>
+            </div>
+
+            {/* Submit Button styled to exactly match your CTALink component */}
+            <button
+              type="submit"
+              class="group bg-primary hover:bg-primaryLight relative mt-2 inline-flex h-12.5 w-full items-center justify-center overflow-hidden rounded-full border-2 border-gray-900 px-5 py-2.5 text-sm font-semibold text-gray-900 transition"
+            >
+              <span class="relative z-10 inline-flex items-center gap-2">
+                <Icon
+                  name="tabler:send"
+                  class="size-5 transition-transform duration-400 ease-out will-change-transform group-hover:scale-130"
+                  size={20}
+                />
+                Send Message
+              </span>
+              <div
+                class="group-hover:animate-gleam pointer-events-none absolute top-0 bottom-0 w-[60%] -skew-x-12 bg-linear-to-r from-transparent via-white/80 to-transparent"
+                style="left: -100%;"
+              >
+              </div>
+            </button>
+          </form>
+        </div>
+
+        <div
+          class="bg-primary flex h-full flex-col justify-center rounded-2xl p-8 text-gray-900 shadow-lg md:p-12"
+        >
+          <h2 class="font-mont mb-4 text-3xl font-bold md:text-4xl">
+            Get in Touch
+          </h2>
+          <p class="mb-10 text-lg text-gray-900/80">
+            Have a project in mind? We'd love to hear from you. Reach out today
+            for a free consultation and let's build something lasting.
+          </p>
+
+          <div class="space-y-8">
+            {/* Phone */}
+            <div class="flex items-center gap-5">
+              <div
+                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-900/10 transition-colors hover:bg-gray-900/20"
+              >
+                <Icon name="tabler:phone" class="size-6 text-gray-900" />
+              </div>
+              <div>
+                <p
+                  class="text-xs font-bold tracking-wider text-gray-900/70 uppercase"
+                >
+                  Call Us
+                </p>
+                <a
+                  href="tel:7802632483"
+                  class="text-lg font-bold transition-opacity hover:opacity-70"
+                  >780-263-2483</a
+                >
+              </div>
+            </div>
+
+            {/* Email */}
+            <div class="flex items-center gap-5">
+              <div
+                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-900/10 transition-colors hover:bg-gray-900/20"
+              >
+                <Icon name="tabler:mail" class="size-6 text-gray-900" />
+              </div>
+              <div>
+                <p
+                  class="text-xs font-bold tracking-wider text-gray-900/70 uppercase"
+                >
+                  Email Us
+                </p>
+                <a
+                  href="mailto:rymor.concreteco@gmail.com"
+                  class="text-lg font-bold break-all transition-opacity hover:opacity-70"
+                  >rymor.concreteco@gmail.com</a
+                >
+              </div>
+            </div>
+
+            {/* Location */}
+            <div class="flex items-center gap-5">
+              <div
+                class="flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-900/10 transition-colors hover:bg-gray-900/20"
+              >
+                <Icon name="tabler:map-pin" class="size-6 text-gray-900" />
+              </div>
+              <div>
+                <p
+                  class="text-xs font-bold tracking-wider text-gray-900/70 uppercase"
+                >
+                  Location
+                </p>
+                <p class="text-lg font-bold">Edmonton, Alberta</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-[1] block w-full max-w-[39.375rem]">
+        <!-- "border-t-[15px] border-[#224ca1]",
+            "rounded-tr-[250px] rounded-bl-[250px] border-r-[15px]", -->
+        <div
+          class:list={[
+            "h-[25rem] w-full overflow-hidden rounded-4xl",
+            "lg:aspect-[9/16] lg:h-auto",
+          ]}
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8097.070425737101!2d-114.00173224261772!3d53.52773674923386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x539f91ce4af32f43%3A0x6af15b473afd6713!2sStony%20Plain%2C%20AB%2C%20Canada!5e1!3m2!1sen!2sph!4v1774888645995!5m2!1sen!2sph"
+            width="600"
+            height="450"
+            style="border:0;"
+            class="h-full w-full scale-[1.02]"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
-
-<style lang="less">
-	/* PAGE-SPECIFIC STYLES FOR THE CONTACT PAGE */
-
-	/*-- -------------------------- -->
-<---          Contact           -->
-<--- -------------------------- -*/
-
-	/* Mobile - 360px */
-	@media only screen and (min-width: 0em) {
-		#cs-contact {
-			padding: var(--sectionPadding);
-
-			.cs-container {
-				width: 100%;
-				/* changes to 1280px at desktop */
-				max-width: (800/16rem);
-				margin: auto;
-			}
-
-			.cs-content {
-				width: 100%;
-			}
-
-			.cs-topper {
-				text-align: left;
-				/* 8px - 12px */
-				margin-bottom: clamp(0.5rem, 1.4vw, 0.75rem);
-			}
-
-			.cs-title {
-				text-align: left;
-				max-width: (800/16rem);
-			}
-
-			.cs-text {
-				text-align: left;
-				/* 404px - 522px */
-				max-width: clamp(25.25rem, 30vw, 32.625rem);
-				margin: 0 auto 0 0;
-				/* 40px - 48px */
-				margin-bottom: clamp(2.5rem, 6.3vw, 3rem);
-			}
-
-			#cs-form {
-				margin-bottom: (40/16rem);
-				label {
-					font-size: (16/16rem);
-					font-weight: 700;
-					line-height: 1.5em;
-					/* 12px - 20px */
-					margin-bottom: clamp(0.75rem, 1.3em, 1.25rem);
-					color: var(--headerColor);
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: flex-start;
-				}
-
-				.cs-label-message {
-					/* 32px - 48px */
-					margin-bottom: clamp(2rem, 6.3vw, 3rem);
-				}
-
-				input,
-				textarea {
-					font-size: (16/16rem);
-					width: 100%;
-					height: (64/16rem);
-					margin-top: (4/16rem);
-					/* prevents border & padding from affecting height */
-					box-sizing: border-box;
-					padding-left: (20/16rem);
-					border: 1px solid #b4b2c7;
-					border-radius: (8/16rem);
-					transition: border 0.3s;
-
-					&:hover {
-						border: 1px solid var(--primary);
-					}
-				}
-
-				textarea {
-					font-family: inherit;
-					min-height: (120/16rem);
-					padding-top: (20/16rem);
-				}
-
-				.cs-button-solid {
-					width: 100%;
-					border: none;
-				}
-			}
-
-			.cs-right-section {
-				height: (320/16rem);
-				/* 24px - 40px top & bottom */
-				/* 20px - 40px left & right */
-				padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem);
-				border-radius: (8/16rem);
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				align-items: flex-start;
-				position: relative;
-				/* cuts off corners on img tag */
-				overflow: hidden;
-			}
-
-			.cs-header {
-				/* 16px - 20px */
-				font-size: clamp(1rem, 3vw, 1.25rem);
-				font-weight: 700;
-				line-height: 1.2em;
-				margin-bottom: (8/16rem);
-				color: var(--bodyTextColorWhite);
-				display: block;
-			}
-
-			.cs-link {
-				/* 16px - 20px */
-				font-size: clamp(1rem, 3vw, 1.25rem);
-				line-height: 1.2em;
-				text-decoration: none;
-				margin-bottom: (20/16rem);
-				color: var(--bodyTextColorWhite);
-				display: block;
-				position: relative;
-
-				&:before {
-					/* Animated underline */
-					content: "";
-					width: 0%;
-					height: 2px;
-					/* current color of the parent */
-					background: currentColor;
-					opacity: 1;
-					display: block;
-					position: absolute;
-					bottom: (-2/16rem);
-					left: 0;
-					transition: width 0.3s;
-				}
-
-				&:hover {
-					&:before {
-						width: 100%;
-					}
-				}
-
-				&:last-of-type {
-					margin-bottom: 0;
-				}
-			}
-
-			.cs-block {
-				/* sends second address line to the bottom on its own line */
-				display: block;
-			}
-
-			.cs-bg-picture {
-				width: 100%;
-				height: 100%;
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				z-index: -1;
-				transition: transform 0.6s;
-
-				&:before {
-					/* background color overlay */
-					content: "";
-					width: 100%;
-					height: 100%;
-					background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-					display: block;
-					position: absolute;
-					top: 0;
-					left: 0;
-					z-index: 1;
-				}
-
-				img {
-					width: 100%;
-					height: 100%;
-					/* Makes img tag act as a background image */
-					object-fit: cover;
-					position: absolute;
-					top: 0;
-					left: 0;
-				}
-			}
-		}
-	}
-
-	/* Tablet - 700px */
-	@media only screen and (min-width: 43.75em) {
-		#cs-contact {
-			#cs-form {
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				flex-wrap: wrap;
-
-				label {
-					width: 48%;
-				}
-
-				.cs-label-message {
-					width: 100%;
-				}
-			}
-		}
-	}
-
-	/* Small Desktop - 1024px */
-	@media only screen and (min-width: 64em) {
-		#cs-contact {
-			.cs-container {
-				max-width: (1280/16rem);
-				display: flex;
-				justify-content: flex-end;
-				align-items: flex-start;
-				gap: (80/16rem);
-			}
-
-			#cs-form {
-				max-width: (630/16rem);
-				label {
-					width: 100%;
-				}
-			}
-
-			.cs-right-section {
-				width: 40%;
-				max-width: (542/16rem);
-				/* changes to 578px at 1300px wide */
-				height: (686/16rem);
-				/* prevents flexbox from squishing it */
-				flex: none;
-
-				&:hover {
-					.cs-bg-picture {
-						transform: scale(1.1);
-					}
-				}
-			}
-
-			.cs-block {
-				/* goes back to inline so it stays "in line" with the rest of the text */
-				display: inline-block;
-			}
-		}
-	}
-
-	/* Small Desktop - 1300px */
-	@media only screen and (min-width: 81.25em) {
-		#cs-contact {
-			#cs-form {
-				column-gap: (0/16rem);
-				label {
-					width: 48%;
-					max-width: (305/16rem);
-				}
-
-				.cs-label-message {
-					max-width: 100%;
-				}
-			}
-
-			.cs-right-section {
-				height: (578/16rem);
-			}
-		}
-	}
-
-	/* Dark Mode */
-	@media only screen and (min-width: 0em) {
-		body.dark-mode {
-			#cs-contact {
-				.cs-text,
-				.cs-title {
-					color: var(--bodyTextColorWhite);
-				}
-
-				.cs-topper {
-					color: var(--primaryLight);
-				}
-
-				#cs-form {
-					label,
-					input,
-					textarea {
-						color: var(--bodyTextColorWhite);
-						background-color: transparent;
-
-						&::placeholder {
-							/* lighten up the color of the text by 40%*/
-							filter: brightness(1.4);
-						}
-					}
-				}
-
-				.cs-bg-picture {
-					background-color: #000;
-
-					img {
-						/* lets parent background-color bleed through and darken it */
-						opacity: 0.5;
-					}
-				}
-			}
-		}
-	}
-</style>

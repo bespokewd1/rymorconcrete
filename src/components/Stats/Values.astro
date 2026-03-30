@@ -1,0 +1,74 @@
+---
+import Topper from "@components/Ui/Topper.astro";
+import { Icon } from "astro-icon/components";
+
+export type Values = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+interface Props {
+  values: Values[];
+}
+
+const { values } = Astro.props;
+---
+
+<section class="py-section-padding bg-neutral-900 px-4 sm:px-8">
+  <div class="mx-auto max-w-7xl">
+    <!-- Section Header -->
+    <div class="mb-12 text-center lg:mb-16">
+      <!-- <span
+          class="mb-2 block font-mont text-sm font-bold tracking-widest text-accent uppercase"
+          data-reveal
+          data-direction="bottom"
+          data-distance-y="30"
+          data-once="true"
+        >
+          Our Values
+        </span> -->
+
+      <Topper iconName="tabler:scale" class="justify-center">
+        Our Core Values
+      </Topper>
+
+      <h2
+        class="font-mont text-bodyTextColorWhite mb-6 text-3xl font-bold sm:text-4xl"
+      >
+        What We Stand For
+      </h2>
+
+      <p
+        class="font-mont text-bodyTextColorWhite/80 mx-auto max-w-2xl text-lg leading-relaxed"
+      >
+        These core values guide every decision we make and every floor we
+        install.
+      </p>
+    </div>
+
+    <!-- Values Grid -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        values.map((value) => (
+          <div class="group bg-primaryLight hover:bg-primaryLight/80 rounded-sm p-6 text-center transition-all duration-300">
+            <div class="bg-primary mx-auto mb-4 flex size-16 items-center justify-center rounded-full transition-colors duration-300">
+              <Icon
+                name={value.icon}
+                class="text-accent size-8 transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+
+            <h3 class="font-mont text-fore-light mb-2 text-lg font-bold">
+              {value.title}
+            </h3>
+
+            <p class="font-mont text-fore-light/70 text-sm leading-relaxed">
+              {value.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

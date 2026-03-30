@@ -9,16 +9,20 @@ import react from "@astrojs/react";
 export default defineConfig({
   // update me!
   site: "https://www.yourwebsite.com",
-
-  integrations: [icon(), sitemap({
+  prefetch: true,
+  integrations: [
+    icon(),
+    sitemap({
       filter: (page) => !page.includes("/admin"),
       changefreq: "weekly",
       priority: 0.7,
-  }), react()],
+    }),
+    react(),
+  ],
 
   image: {
-      layout: "constrained",
-    },
+    layout: "constrained",
+  },
 
   vite: {
     plugins: [tailwindcss()],

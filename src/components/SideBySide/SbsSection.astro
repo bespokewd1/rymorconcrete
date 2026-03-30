@@ -1,0 +1,104 @@
+---
+import Topper from "@components/Ui/Topper.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+interface Props {
+  teamImage: ImageMetadata;
+}
+
+const { teamImage } = Astro.props;
+---
+
+<section class="py-section-padding bg-white px-4 sm:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- Image -->
+      <div
+        class="relative"
+        data-reveal
+        data-direction="left"
+        data-distance-x="50"
+        data-once="true"
+      >
+        <div class="overflow-hidden rounded-sm shadow-2xl">
+          <Image
+            src={teamImage}
+            alt="Solid Concrete Coating team at work"
+            class="h-80 w-full object-cover sm:h-125"
+          />
+        </div>
+
+        <!-- Floating experience badge -->
+        <div
+          class="absolute -right-4 -bottom-4 z-10 rounded-sm bg-neutral-900 p-6 shadow-xl sm:-right-8 sm:-bottom-8"
+        >
+          <p class="font-mont text-primary text-3xl font-extrabold">Years</p>
+          <p class="font-mont text-primary/90 text-sm font-medium">
+            of Experience
+          </p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div
+        data-reveal
+        data-direction="right"
+        data-distance-x="50"
+        data-delay-s="0.15"
+        data-once="true"
+      >
+        <Topper iconName="tabler:book"> Our Story </Topper>
+        <!-- <span class="mb-2 block font-mont text-sm font-bold tracking-widest text-accent uppercase">
+            Our Story
+          </span> -->
+
+        <h2
+          class="font-mont text-fore-dark mb-6 text-3xl font-bold sm:text-4xl"
+        >
+          Built on a Foundation of Experience
+        </h2>
+
+        <div
+          class="font-mont text-fore-dark/80 space-y-4 text-lg leading-relaxed"
+        >
+          <p>
+            Solid Concrete Coating Ltd. was founded by professionals with deep
+            roots in the construction industry. Our journey began in the
+            trades—working with concrete, masonry, and general contracting—where
+            we developed an eye for quality and a commitment to doing things
+            right.
+          </p>
+
+          <p>
+            That hands-on experience taught us what makes a coating system truly
+            last: proper surface preparation, premium materials, and meticulous
+            application. Today, we bring those principles to every garage,
+            basement, warehouse, and patio we transform.
+          </p>
+
+          <p>
+            Based in Edmonton, we're proud to serve homeowners and businesses
+            throughout the region with flooring solutions that combine beauty,
+            durability, and lasting value.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-6">
+          <div class="flex items-center gap-3">
+            <Icon name="tabler:map-pin" class="text-accent size-6" />
+            <span class="font-mont text-fore-dark font-medium">
+              Edmonton, Alberta
+            </span>
+          </div>
+          <div class="flex items-center gap-3">
+            <Icon name="tabler:building-community" class="text-accent size-6" />
+            <span class="font-mont text-fore-dark font-medium">
+              Locally Owned
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

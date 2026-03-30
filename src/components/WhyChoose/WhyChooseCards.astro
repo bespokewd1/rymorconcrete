@@ -1,0 +1,103 @@
+---
+import Topper from "@components/Ui/Topper.astro";
+import { Icon } from "astro-icon/components";
+
+export type Highlights = {
+    icon: string; title: string; description: string
+}
+
+interface Props {
+    highlights: Highlights[]
+}
+
+const {highlights} = Astro.props
+---
+
+<section class="bg-fore-light px-4 py-section-padding sm:px-8">
+    <div class="mx-auto max-w-7xl">
+      <!-- Section Header -->
+      <div class="mb-12 text-center lg:mb-16">
+        <Topper class="justify-center" iconName="tabler:star">
+          Why Choose Us
+        </Topper>
+        <!-- <div
+          class="mb-4 flex items-center justify-center gap-3"
+          data-reveal
+          data-direction="bottom"
+          data-distance-y="30"
+          data-once="true"
+        >
+          <div class="flex size-12 items-center justify-center rounded-full bg-accent/10">
+            <Icon name="tabler:star" class="size-6 text-accent" />
+          </div>
+        </div>
+
+        <span
+          class="mb-2 block font-mont text-sm font-bold tracking-widest text-accent uppercase"
+          data-reveal
+          data-direction="bottom"
+          data-distance-y="30"
+          data-delay-s="0.05"
+          data-once="true"
+        >
+          Why Choose Us
+        </span> -->
+
+        <h2
+          class="mb-6 font-mont text-3xl font-bold text-fore-dark sm:text-4xl"
+          data-reveal
+          data-direction="bottom"
+          data-distance-y="30"
+          data-delay-s="0.1"
+          data-once="true"
+        >
+          What Sets Us Apart
+        </h2>
+
+        <p
+          class="mx-auto max-w-2xl font-mont text-lg leading-relaxed text-fore-dark/80"
+          data-reveal
+          data-direction="bottom"
+          data-distance-y="30"
+          data-delay-s="0.15"
+          data-once="true"
+        >
+          When you choose Rymor Concrete, you're choosing a team
+          dedicated to excellence in every aspect of your project.
+        </p>
+      </div>
+
+      <!-- Highlights Grid -->
+      <div
+        class="grid gap-6 sm:grid-cols-2 lg:gap-8"
+        data-stagger-child-b
+        data-distance-y="40"
+        data-delay-s="0.2"
+        data-once="true"
+      >
+        {
+          highlights.map((item) => (
+            <div class="group relative overflow-hidden rounded-sm border border-primary/10 bg-white p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg sm:p-8">
+              <!-- Accent bar -->
+              <div class="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-primary to-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              <div class="mb-4 flex size-14 items-center justify-center rounded-full bg-accent/10 transition-colors duration-300 group-hover:bg-accent/20">
+                <Icon
+                  name={item.icon}
+                  class="size-7 text-accent transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+
+              <h3 class="mb-3 font-mont text-xl font-bold text-fore-dark">
+                {item.title}
+              </h3>
+
+              <p class="font-mont leading-relaxed text-fore-dark/70">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>

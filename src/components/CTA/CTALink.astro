@@ -3,9 +3,18 @@ import { Icon } from "astro-icon/components";
 import { type HTMLAttributes } from "astro/types";
 import cn from "src/utils/cn";
 
-type Props = HTMLAttributes<"a">;
+type Props = HTMLAttributes<"a"> & {
+  icon?: string;
+  withIcon?: boolean;
+};
 
-const { class: className, href: to = "/contact", ...props } = Astro.props;
+const {
+  class: className,
+  icon = "tabler:phone-call",
+  href: to = "/contact",
+  withIcon = true,
+  ...props
+} = Astro.props;
 ---
 
 <a
@@ -16,10 +25,15 @@ const { class: className, href: to = "/contact", ...props } = Astro.props;
   ])}
 >
   <span class="relative z-10 inline-flex items-center gap-2">
-    <slot>
-      <Icon name="tabler:phone-call" size={17} />
-      Get a Free Quote
-    </slot>
+    <Icon
+      name={icon}
+      size={20}
+      class:list={cn([
+        "size-5 transition-transform duration-400 ease-out will-change-transform group-hover:scale-130",
+        withIcon ? "" : "hidden",
+      ])}
+    />
+    <slot> Get a Free Quote </slot>
   </span>
 
   <div

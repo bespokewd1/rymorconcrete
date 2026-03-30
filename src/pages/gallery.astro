@@ -1,0 +1,20 @@
+---
+import TextBanner from "@components/Banner/TextBanner.astro";
+import GalleryBento from "@components/Gallery/GalleryBento.astro";
+import { BentoGrid } from "@components/Ui/BentoGrid";
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Our Concrete Services | Rymor Concrete Co."
+  description="Explore our specialized concrete services including driveways, patios, stamped concrete, and commercial flatwork in Edmonton."
+>
+  <TextBanner label="Our Gallery">
+    <p class="mt-4 text-lg text-zinc-300 capitalize">checkout our work</p>
+  </TextBanner>
+  <GalleryBento
+    forPage={true}
+    bentoClass="lg:grid-cols-4"
+    containerClass="max-w-400"
+  />
+</BaseLayout>

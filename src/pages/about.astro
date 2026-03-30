@@ -8,15 +8,137 @@ import Banner from "@components/Banner/Banner.astro";
 import FAQ from "@components/FAQ/FAQ.astro";
 import SideBySide from "@components/SideBySide/SideBySide.astro";
 import CTA from "@components/CTA/CTASimple.astro";
+import AboutHero from "@components/Hero/AboutHero.astro";
+import TrustBadges from "@components/Badge/TrustBadges.astro";
+import StatsBar, { type Stats } from "@components/Stats/StatsBar.astro";
+import WhyChooseCards from "@components/WhyChoose/WhyChooseCards.astro";
+import SbsSection from "@components/SideBySide/SbsSection.astro";
+import Values from "@components/Stats/Values.astro";
+import ProcessSection, {
+  type Steps,
+} from "@components/Process/ProcessSection.astro";
 
 // Images
 import landingImage from "@assets/images/landing.jpg";
-const optimizedImage = await getImage({ src: landingImage, format: "webp" });
+import port1 from "@assets/images/projects/port1.jpg";
+import port2 from "@assets/images/projects/port2.jpg";
+import TrustSection from "@components/Badge/TrustSection.astro";
+import ServiceAreaBadges from "@components/Badge/ServiceAreaBadges.astro";
+import CTASection from "@components/CTA/CTASection.astro";
+
+const optimizedImage = await getImage({
+  src: landingImage,
+  format: "webp",
+  width: landingImage.width,
+  height: landingImage.height,
+});
+
+const stats: Stats[] = [
+  { value: "10+", label: "Years Experience" },
+  { value: "500+", label: "Projects Completed" },
+  { value: "100%", label: "Satisfaction Rate" },
+  { value: "5", label: "Star Reviews" },
+];
+
+// Why Choose Us highlights
+const highlights = [
+  {
+    icon: "tabler:certificate",
+    title: "Experienced & Certified Installers",
+    description:
+      "Our team holds industry certifications and brings years of hands-on expertise to every project.",
+  },
+  {
+    icon: "tabler:leaf",
+    title: "High-Quality, Eco-Friendly Products",
+    description:
+      "We use premium, environmentally responsible coatings that are safe for your family and the planet.",
+  },
+  {
+    icon: "tabler:clock-bolt",
+    title: "Fast & Responsive Service",
+    description:
+      "Quick turnaround times and prompt communication from quote to completion.",
+  },
+  {
+    icon: "tabler:shield-check",
+    title: "Fully Insured & Bonded",
+    description:
+      "Complete peace of mind with comprehensive insurance coverage on every project.",
+  },
+];
+
+// Our values
+const values = [
+  {
+    icon: "tabler:diamond",
+    title: "Quality First",
+    description:
+      "We never cut corners. Every floor we install meets our rigorous standards.",
+  },
+  {
+    icon: "tabler:users-group",
+    title: "Customer Focused",
+    description:
+      "Your satisfaction drives everything we do, from first call to final walkthrough.",
+  },
+  {
+    icon: "tabler:bulb",
+    title: "Innovation",
+    description:
+      "We stay current with the latest techniques and products in the industry.",
+  },
+  {
+    icon: "tabler:heart-handshake",
+    title: "Integrity",
+    description:
+      "Honest pricing, transparent communication, and promises we keep.",
+  },
+];
+
+// Process steps
+const processSteps: Steps[] = [
+  {
+    step: "01",
+    title: "Free Consultation",
+    description:
+      "We visit your space, assess your needs, and provide a detailed quote—no obligation.",
+  },
+  {
+    step: "02",
+    title: "Surface Preparation",
+    description:
+      "Thorough cleaning, grinding, and repair to ensure optimal coating adhesion.",
+  },
+  {
+    step: "03",
+    title: "Professional Application",
+    description:
+      "Expert installation using premium materials and proven techniques.",
+  },
+  {
+    step: "04",
+    title: "Quality Inspection",
+    description:
+      "Final walkthrough to ensure every detail meets our high standards.",
+  },
+];
 ---
 
-<BaseLayout title="About" description="Meta description for the page" heroImage={optimizedImage}>
-	<Banner title="About Us" image={optimizedImage} />
-	<SideBySide />
-	<FAQ />
-	<CTA />
+<BaseLayout
+  title="About"
+  description="Meta description for the page"
+  heroImage={optimizedImage}
+>
+  <AboutHero image={optimizedImage} />
+  <ServiceAreaBadges />
+  <SbsSection teamImage={port1} />
+  <Values values={values} />
+  <StatsBar stats={stats} />
+  <WhyChooseCards highlights={highlights} />
+  <ProcessSection processSteps={processSteps} workImage={port2} />
+  <!-- <TrustSection /> -->
+
+  <FAQ />
+  <CTASection />
 </BaseLayout>

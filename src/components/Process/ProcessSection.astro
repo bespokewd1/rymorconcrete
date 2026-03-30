@@ -1,0 +1,111 @@
+---
+import Topper from "@components/Ui/Topper.astro";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+export type Steps = {
+  step: string;
+  title: string;
+  description: string;
+};
+
+interface Props {
+  processSteps: Steps[];
+  workImage: ImageMetadata;
+}
+
+const { processSteps, workImage } = Astro.props;
+---
+
+<section class="bg-fore-light py-section-padding px-4 sm:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- Content -->
+      <div>
+        <Topper iconName="tabler:road"> Our Process </Topper>
+        <!-- <span
+            class="mb-2 block font-mont text-sm font-bold tracking-widest text-accent uppercase"
+            data-reveal
+            data-direction="left"
+            data-distance-x="30"
+            data-once="true"
+          >
+            Our Process
+          </span> -->
+
+        <h2
+          class="font-mont text-fore-dark mb-6 text-3xl font-bold sm:text-4xl"
+          data-reveal
+          data-direction="left"
+          data-distance-x="30"
+          data-delay-s="0.1"
+          data-once="true"
+        >
+          How We Deliver Excellence
+        </h2>
+
+        <p
+          class="font-mont text-fore-dark/80 mb-8 text-lg leading-relaxed"
+          data-reveal
+          data-direction="left"
+          data-distance-x="30"
+          data-delay-s="0.15"
+          data-once="true"
+        >
+          From your first call to the final walkthrough, we follow a proven
+          process designed to deliver exceptional results every time.
+        </p>
+
+        <!-- Process Steps -->
+        <div
+          class="space-y-6"
+          data-stagger-child-b
+          data-distance-y="30"
+          data-delay-s="0.2"
+          data-once="true"
+        >
+          {
+            processSteps.map((item, index) => (
+              <div class="group flex gap-4">
+                <div class="bg-primary font-mont text-fore-light flex size-12 shrink-0 items-center justify-center rounded-full text-lg font-bold transition-transform duration-300 group-hover:scale-110">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 class="font-mont text-fore-dark mb-1 text-lg font-bold">
+                    {item.title}
+                  </h3>
+                  <p class="font-mont text-fore-dark/70">{item.description}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div
+        class="relative"
+        data-reveal
+        data-direction="right"
+        data-distance-x="50"
+        data-delay-s="0.15"
+        data-once="true"
+      >
+        <div class="overflow-hidden rounded-sm shadow-2xl">
+          <Image
+            src={workImage}
+            alt="Professional epoxy floor installation process"
+            class="h-80 w-full object-cover sm:h-[500px]"
+          />
+        </div>
+
+        <!-- Floating badge -->
+        <div
+          class="bg-primary absolute -bottom-4 -left-4 z-10 rounded-sm p-4 shadow-xl sm:-bottom-6 sm:-left-6"
+        >
+          <Icon name="tabler:checks" class="text-fore-dark size-8" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,91 @@
+---
+import Topper from "@components/Ui/Topper.astro";
+import { Image } from "astro:assets";
+import CTALink from "@components/CTA/CTALink.astro";
+import { Icon } from "astro-icon/components";
+import { BUSINESS } from "@data/client";
+import type { GetImageResult } from "astro";
+
+interface Props {
+  image: GetImageResult;
+}
+
+const { image } = Astro.props as Props;
+---
+
+<section
+  class="relative overflow-hidden bg-neutral-900 pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32"
+>
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={image.src}
+      width={image.options.width!}
+      height={image.options.height!}
+      alt="Epoxy flooring professionals at work"
+      class="h-full w-full object-cover opacity-30"
+      loading="eager"
+      fetchpriority={"high"}
+    />
+
+    <div
+      class="absolute inset-0 bg-linear-to-b from-neutral-900/50 via-neutral-900/25 to-neutral-800/50"
+    >
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-8">
+    <div class="max-w-3xl">
+      <Topper iconName="tabler:users-group"> About Us </Topper>
+
+      <h1
+        class="font-mont text-bodyTextColorWhite mb-6 text-4xl leading-tight font-extrabold sm:text-5xl lg:text-6xl"
+        data-reveal
+      >
+        Edmonton's Trusted
+        <span class="text-primary">Concrete</span> Experts
+      </h1>
+
+      <p
+        class="font-mont text-bodyTextColorWhite/80 mb-8 text-lg leading-relaxed sm:text-xl"
+        data-reveal
+      >
+        Our team brings years of hands-on construction and concrete experience
+        from previous trades. We bring that expertise to every project, ensuring
+        high-quality finishes, durability, and customer satisfaction.
+      </p>
+
+      <div
+        class="flex flex-wrap gap-4"
+        data-reveal
+        data-direction="left"
+        data-distance-x="30"
+        data-delay-s="0.2"
+        data-once="true"
+      >
+        <CTALink />
+        <!-- <CTALink label="" variant="primary" showIcon={true} /> -->
+
+        <CTALink
+          icon="tabler:device-mobile"
+          href={`tel:${BUSINESS.phoneForTel}`}
+        >
+          {BUSINESS.phoneFormatted}
+        </CTALink>
+        <!-- <a
+            href="tel:7807085345"
+            class="inline-flex items-center gap-2 rounded-sm border-2 border-fore-light/30 bg-transparent px-6 py-3 font-mont font-bold text-fore-light transition-all duration-300 hover:border-accent hover:text-accent"
+          >
+            <Icon name="tabler:phone" class="size-5" />
+            (780) 708-5345
+          </a> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative element -->
+  <div
+    class="bg-accent/5 absolute right-0 bottom-0 hidden h-64 w-64 translate-x-1/4 translate-y-1/4 rounded-full blur-3xl lg:block"
+  >
+  </div>
+</section>

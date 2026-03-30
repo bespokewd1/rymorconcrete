@@ -159,7 +159,11 @@ import { Icon } from "astro-icon/components";
             class="group bg-primary hover:bg-primaryLight relative mt-2 inline-flex h-12.5 w-full items-center justify-center overflow-hidden rounded-full border-2 border-gray-900 px-5 py-2.5 text-sm font-semibold text-gray-900 transition"
           >
             <span class="relative z-10 inline-flex items-center gap-2">
-              <Icon name="tabler:send" size={18} />
+              <Icon
+                name="tabler:send"
+                class="size-5 transition-transform duration-400 ease-out will-change-transform group-hover:scale-130"
+                size={20}
+              />
               Send Message
             </span>
             <div
