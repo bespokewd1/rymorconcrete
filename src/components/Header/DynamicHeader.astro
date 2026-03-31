@@ -23,21 +23,27 @@ import logo from "@assets/images/rymor-logo.png";
 // Data
 import navData from "@data/navData.json";
 import CTALink from "@components/CTA/CTALink.astro";
+import cn from "@utils/cn";
 ---
 
-<header id="cs-navigation" class="sticky top-0">
+<header id="cs-navigation" class="sticky top-0 py-0 lg:py-3">
+  <div class="cs-header-texture" aria-hidden="true"></div>
   <div class="cs-container">
     <!--Nav Logo-->
-    <a href="/" class="cs-logo" aria-label="Return to [Company Name] Home page">
+    <a
+      href="/"
+      class="cs-logo order-2 ml-auto lg:order-1 lg:ml-0"
+      aria-label="Return to rymor concrete Home page"
+    >
       <!-- <Icon name="logo-black" /> -->
       <Image
         src={logo}
         alt="rymor logo"
-        class:list={["aspect-video w-50 object-contain"]}
+        class:list={["aspect-video w-50 scale-130 object-contain lg:scale-125"]}
       />
     </a>
     <!--Navigation List-->
-    <nav class="cs-nav" aria-label="main navigation">
+    <nav class="cs-nav order-2 lg:order-2" aria-label="main navigation">
       <!--Mobile Nav Toggle-->
       <button
         class="cs-toggle"
@@ -133,7 +139,16 @@ import CTALink from "@components/CTA/CTALink.astro";
       </div>
     </nav>
     <!-- <a href="/contact/" class="cs-button-solid cs-nav-button">Contact Us</a> -->
-    <CTALink class="hidden lg:inline-flex">Contact Us</CTALink>
+    <CTALink withIcon={false} class="order-1 px-3 sm:px-5 lg:order-3">
+      <Icon
+        name="tabler:phone-call"
+        size={20}
+        class:list={cn([
+          "size-5 transition-transform duration-400 ease-out will-change-transform group-hover:scale-130 lg:block",
+        ])}
+      />
+      <span class="hidden sm:inline"> Contact Us </span>
+    </CTALink>
     <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
     <!-- <DarkModeToggle /> -->
   </div>
@@ -787,14 +802,15 @@ import CTALink from "@components/CTA/CTALink.astro";
       /* prevents padding from affecting height and width */
       box-sizing: border-box;
       padding: 0 (16/16rem);
+      background: transparent;
       /*background-color: #fff;*/
-      background: linear-gradient(
-        to right,
-        #d3c0a0 0%,
-        #b69f76 16%,
-        #b19a6f 22%,
-        #bfb5a3 100%
-      );
+      // background: linear-gradient(
+      //   to right,
+      //   #d3c0a0 0%,
+      //   #b69f76 16%,
+      //   #b19a6f 22%,
+      //   #bfb5a3 100%
+      // );
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       position: fixed;
       z-index: 10000;
@@ -910,6 +926,95 @@ import CTALink from "@components/CTA/CTALink.astro";
           }
         }
       }
+    }
+  }
+
+  /* noise background */
+
+  #cs-navigation {
+    --header-left: #baa072;
+    --header-left-dark: #cbb691;
+    --header-right: #b6ab9b;
+    --header-right-dark: #aca190;
+
+    container-type: inline-size;
+    container-name: header;
+
+    .cs-header-texture {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+
+      /* 
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.16) 0%,
+            rgba(255, 255, 255, 0.16) 22%,
+            rgba(255, 255, 255, 0.06) 22%,
+            rgba(255, 255, 255, 0.06) 34%,
+            rgba(255, 255, 255, 0) 35%,
+            rgba(255, 255, 255, 0) 100%
+          ),
+*/
+      background: linear-gradient(
+        25deg,
+        var(--header-left) 0%,
+        var(--header-left-dark) calc(var(--header-split) - 8%),
+        var(--header-right) var(--header-split),
+        var(--header-right-dark) 100%
+      );
+    }
+
+    .cs-header-texture:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("/assets/noise.svg");
+      background-repeat: repeat;
+      background-size: 180px 180px;
+      // background-size: 220px 220px;
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+      filter: contrast(155%) brightness(110%);
+    }
+
+    .cs-header-texture:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at 18% 20%,
+          rgba(255, 255, 255, 0.14),
+          transparent 28%
+        ),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.04));
+    }
+  }
+
+  @container header (max-width:991px) {
+    .cs-header-texture {
+      --header-split: 58%;
+    }
+  }
+
+  @container header (min-width:992px) {
+    .cs-header-texture {
+      --header-split: 20%;
+
+      background: linear-gradient(
+        115deg,
+        var(--header-left) 0%,
+        var(--header-left-dark) calc(var(--header-split) - 8%),
+        var(--header-right) var(--header-split),
+        var(--header-right-dark) 100%
+      );
+    }
+  }
+  @container header (min-width:1692px) {
+    .cs-header-texture {
+      --header-split: 30%;
     }
   }
 </style>
